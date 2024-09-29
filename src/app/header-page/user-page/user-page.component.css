@@ -1,0 +1,142 @@
+
+.example-container {
+  flex-direction: column;
+}
+.logo-section {
+  display: flex; /* Aligns children (image and text) in a row */
+  align-items: center; /* Centers items vertically */
+  justify-content: center; /* Centers items horizontally */
+  margin: 0px; /* Adds space around the logo section */
+}
+
+.logo-img {
+  width: 50px; /* Adjusts the width of the logo */
+  margin-right: 10px; /* Space between the image and text */
+}
+
+.brand-title {
+  font-size: 24px; /* Adjusts the font size of the title */
+  font-weight: bold; /* Makes the text bold */
+  color: #333; /* Dark gray color for the text */
+  font-family: 'Arial', sans-serif; /* Changes the font family */
+}
+
+/* Optional: Add a hover effect */
+.logo-section:hover .brand-title {
+  color: #007BFF; /* Changes text color on hover */
+  transition: color 0.3s; /* Smooth transition effect */
+}
+
+.nav-link {
+  cursor: pointer;
+  text-decoration: none;
+}
+.nav-link:hover {
+  background-color: gainsboro;
+}
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+.custom-toolbar{
+  background-color: white;
+}
+
+mat-sidenav-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+}
+.example-spacer {
+  flex: 1 1 auto;
+ 
+}
+
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  
+}
+
+router-outlet {
+  flex: 1;
+}
+
+.sidebar {
+  width: 20%; /* Width of the sidebar */
+  height: 100vh; /* Full height of the viewport */
+  position: fixed;
+ background-color: whitesmoke;
+
+}
+.sidebar a:hover {
+  color:rgb(153, 153, 229);
+
+}
+.sidebar:hover ~ .content {
+  margin-left: 260px; /* Adjust margin to match sidebar width on hover */
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px; /* Adjust the width for smaller screens */
+  }
+  .sidebar:hover {
+    width: 210px; /* Slightly increase width on hover for smaller screens */
+  }
+}
+.toggle-button {
+  position: relative;
+}
+
+.menu-icon, .close-icon {
+  transition: opacity 0.3s ease;
+}
+
+.close-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.toggle-button .mat-icon {
+  transition: opacity 0.3s ease;
+}
+
+.toggle-button .menu-icon.ng-hide {
+  opacity: 0;
+}
+
+.toggle-button .close-icon.ng-show {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .toggle-button {
+    display: none;
+  }
+}
+
+.loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* Make sure it appears above other content */
+  background-color:gray;
+  border-radius: 8px; /* Optional: Rounded corners */
+  padding: 100%; /* Optional: Add padding around the spinner */
+
+  /* width: 100%;
+  height: 100vh;
+  align-items: center; */
+}
+
+
+
+
+

@@ -33,6 +33,8 @@ import { LandingPageComponent } from './lay-out/landing-page/landing-page.compon
 import { UserProfileComponent } from './Profile/ComponentsTable/user-profile/user-profile.component';
 import { UserProfileUIComponent } from './Profile/ComponentsUI/user-profile-ui/user-profile-ui.component';
 import { ChangePasswordUIComponent } from './Profile/ComponentsUI/change-password-ui/change-password-ui.component';
+import { UserPageComponent } from './header-page/user-page/user-page.component';
+import { UserMenuPageComponent } from './header-page/user-menu-page/user-menu-page.component';
 
 
 
@@ -60,6 +62,8 @@ import { ChangePasswordUIComponent } from './Profile/ComponentsUI/change-passwor
     UserProfileComponent,
     UserProfileUIComponent,
     ChangePasswordUIComponent,
+    UserPageComponent,
+    UserMenuPageComponent,
   
   ],
   imports: [
