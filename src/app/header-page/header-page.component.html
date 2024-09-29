@@ -1,0 +1,88 @@
+
+<mat-toolbar class="nav-toolbar custom-toolbar">
+  <nav class="navbar navbar-expand">
+      <div class="container-fixed">
+              <button
+              class="toggleButton"
+              type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="drawer.toggle()">
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+          <ul class="navbar-nav navMenus">
+            <li *ngFor="let module of Modules" class="nav-item">
+              <a 
+                  [ngClass]="{'active-link': getPath(module.moduleName.toLowerCase()) == true}" 
+                  type="button" 
+                  [matMenuTriggerFor]="menu" 
+                  id="navbarDropdownMenuLink"
+                  >
+                  {{module.moduleName}}
+              </a>
+              <mat-menu #menu="matMenu" >
+                  <div *ngFor="let submodule of SubModules" >
+                      <button 
+                          *ngIf="module.id == submodule.moduleId" 
+                          routerLink="{{submodule.route.toLowerCase()}}"  
+                          mat-menu-item 
+                          >
+                          {{submodule.subModuleName}}
+                         
+                      </button>
+                      
+                  </div>
+              </mat-menu> 
+            
+            
+
+              </li>
+          </ul>
+      </div>
+    
+  </nav>
+    <span class="material-symbols-outlined" (click)="onNavItemClick(sidenav)" (click)="logout()" style="margin: 12px;">
+    move_item
+    </span>
+    
+</mat-toolbar>
+
+<mat-toolbar class="business-cont mat-elevation-z3">
+  <span class="business-name" >{{systemTitle}} </span>
+  
+</mat-toolbar>
+<mat-sidenav-container>
+<mat-sidenav #drawer>
+  <!-- <mat-toolbar>Menu</mat-toolbar> -->
+ 
+  <mat-divider></mat-divider>
+  <mat-nav-list *ngFor="let module of Modules">
+      <a mat-list-item [matMenuTriggerFor]="menu">{{module.moduleName}}</a>
+      <mat-menu #menu="matMenu">
+          <div *ngFor="let submodule of SubModules">
+              <button *ngIf="module.id == submodule.moduleId" 
+                  routerLink="{{submodule.route.toLowerCase()}}"
+                  mat-menu-item
+                  >
+                  {{submodule.subModuleName}}
+                
+              </button>
+             
+          </div>
+          
+      </mat-menu>
+     
+  </mat-nav-list> 
+
+ <button mat-menu-item (click)="onNavItemClick(sidenav)" (click)="logout()">Logout</button>
+</mat-sidenav>
+<mat-sidenav-content class="content">
+    <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    <router-outlet></router-outlet>
+
+</mat-sidenav-content>
+</mat-sidenav-container>
+<!-- <app-footer-page></app-footer-page> -->
+<!-- Toolbar Section -->

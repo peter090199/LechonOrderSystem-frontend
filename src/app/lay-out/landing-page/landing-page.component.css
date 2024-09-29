@@ -1,0 +1,142 @@
+.sidenav-container {
+    height: 92%;
+  }
+  
+  .sidenav {
+    width: 170px;
+    background-color: #c2c2c99f;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .content-area {
+    margin-top: 48px; /* Push down content to avoid it being hidden under the toolbar */
+    padding: 15px;    /* Optional padding for aesthetics */
+    overflow: auto; /* Enable scrolling for the content area */
+ 
+  }
+  
+  /* Close Icon */
+  .close-icon {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .sidenav {
+      width: 100%;
+    }
+    
+      /* Links */
+  .nav-item a {
+    color: #000000;
+    text-decoration: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    list-style-type: none;
+  
+  }
+  .toolbar-icon{
+   gap: 15px;
+  }
+    .nav-item {
+      margin-bottom: 10px;
+    }
+ 
+ 
+  }
+
+
+  .toolbar-icon {
+    display: end;
+  
+  }
+
+  .custom-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:rgb(173, 173, 161);
+    color: rgb(37, 34, 34);
+    height: 50px !important;
+    position: fixed; /* Fix the toolbar at the top */
+    top: 0;          /* Align it to the top of the viewport */
+    width: 100%;     /* Make the toolbar stretch across the full width */
+    z-index: 1000;   /* Ensure the toolbar stays above other content */
+  }
+  .navbar-nav {
+    display: flex;
+    align-items: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+  
+  }
+
+.nav-item {
+  margin-right: 20px;
+  position: relative;
+}
+/* Links */
+.nav-item a {
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+ 
+}
+/* Active link styling */
+.active-link {
+  color: #333455; /* Highlight active links */
+}
+
+/* Hover effects */
+.nav-item a:hover {
+  color: #0f6ae0;
+}
+
+/* Dropdown (mat-menu) */
+mat-menu {
+  background-color: #333;
+  border-radius: 4px;
+  padding: 10px;
+}
+mat-menu button {
+  color: #fff;
+  padding: 12px 12px;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+mat-menu button:hover {
+  background-color: #555;
+}
+/* Icon styling */
+.material-symbols-outlined {
+  font-size: 24px;
+  color: #1b1515;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  margin-left:15px;
+  float: right;
+}
+.material-symbols-outlined:hover {
+  color: #3f15d6;
+}
+.business-name{
+  padding: 12px;
+}
+
+  

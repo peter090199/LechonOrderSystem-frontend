@@ -1,0 +1,89 @@
+<section class="section">
+  <div class="profile-container">
+    <mat-card class="profile-card" >
+      <h3>Edit Profile</h3>
+
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading; else loading">
+      
+        <mat-form-field appearance="standard" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" autocomplete="off"  required />
+        </mat-form-field>
+  
+        <mat-form-field appearance="standard"class="full-width">
+          <mat-label>FirstName</mat-label>
+          <input matInput formControlName="firstName" autocomplete="off"  required />
+        </mat-form-field>
+  
+        <mat-form-field appearance="standard" class="full-width">
+          <mat-label>MiddleName</mat-label>
+          <input matInput formControlName="middleName" autocomplete="off"  required/>
+        </mat-form-field>
+
+      
+       <mat-form-field appearance="standard" class="full-width">
+          <mat-label>LastName</mat-label>
+          <input matInput formControlName="lastName" autocomplete="off"  required/>
+        </mat-form-field>
+  
+        <mat-form-field appearance="standard" class="full-width">
+          <mat-label>BirthDate</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+  
+        <mat-form-field appearance="standard" class="full-width">
+          <mat-label>ContactNo</mat-label>
+          <input matInput formControlName="contactNo" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="standard" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="standard" class="full-width" >
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" />
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">Update</button>
+        </div>
+
+      </form>
+      <div class="actions">
+      <button mat-raised-button (click)="onChangePassword()" >Change Password</button>
+      </div>
+    </mat-card>
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Profile Photo</mat-card-title>
+        <mat-card-subtitle>2 x 2 pic</mat-card-subtitle>
+      </mat-card-header>
+      <img [src]="previewUrl" mat-card-image alt="Profile Photo" class="profile-photo" />
+    
+      <mat-card-content>
+      <button mat-raised-button color="primary" class="upload-btn">
+        <span class="material-symbols-outlined">add_a_photo</span>
+        <input type="file" (change)="onUploadPhoto($event)" class="file-input" />
+      </button>
+    </mat-card-content>
+    </mat-card>
+      
+
+    
+    <ng-template #loading>
+      <div class="loading-container">
+        <mat-spinner></mat-spinner>
+        <p>Loading...</p>
+      </div>
+    </ng-template>
+
+  </div>
+</section>
+
+  

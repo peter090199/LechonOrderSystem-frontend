@@ -1,0 +1,23 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+  <h2 mat-dialog-title>{{btnSave}} Module</h2>
+  <mat-divider></mat-divider>
+  <form [formGroup]="moduleForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content>
+            <mat-form-field appearance="standard">
+                <mat-label>ModuleName</mat-label>
+                <input matInput formControlName="moduleName" autocomplete="off"  required>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard">
+                <mat-label>Application</mat-label>
+                <input matInput formControlName="application" autocomplete="off"  required>
+            </mat-form-field>
+      </div>
+       <div mat-dialog-actions [align]="'end'" class="mb-10">
+            <button type="submit" class="mt-12 me-12" mat-raised-button color="primary" [disabled]="moduleForm.invalid">{{btnSave}}</button>
+       </div>
+    </form>
+     
+    

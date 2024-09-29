@@ -1,0 +1,64 @@
+/* Container for centering the form */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+  }
+  
+  /* Form styling */
+  .login-form {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 360px;
+  }
+  
+  /* Form title */
+  .login-form h1 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #333;
+    text-align: left;
+  }
+  
+  /* Form fields */
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 1px;
+  }
+  
+  .mat-form-field .mat-form-field-label {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* Submit button */
+  .login-form button {
+    width: 100%;
+    font-size: 1rem;
+    background-color: #1877f2;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .login-form button:hover {
+    background-color: #155bcb;
+  }
+  
+  /* Link styling */
+  .login-form a {
+    color: #1877f2;
+    text-decoration: none;
+  }
+  
+  .login-form a:hover {
+    text-decoration: underline;
+  }
+  /* Styles for mat-icon within the button */
+

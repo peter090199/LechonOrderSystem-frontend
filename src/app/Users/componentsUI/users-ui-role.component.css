@@ -1,0 +1,81 @@
+
+.form-actions {
+    margin-top: 0px;
+    text-align: right;
+  }
+  /* General form container styling */
+  .form-container {
+    overflow: auto;    /* Enable both horizontal and vertical scrolling */
+    padding: 0px;     /* Optional padding */
+    box-sizing: border-box; /* Include padding in element’s total width and height */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Styling for form fields */
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 0px; /* Space between fields */
+  }
+  
+  mat-form-field .mat-label {
+    font-weight: bold;
+  }
+  
+  mat-form-field .mat-error {
+    font-size: 0.875rem; /* Adjust error font size */
+  }
+  
+  /* Styling for action buttons */
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px; /* Space between buttons */
+  }
+
+  /* Container styling for the button */
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns button to the right */
+}
+
+/* Optional: Customize the button itself */
+button[mat-raised-button] {
+  font-size: 14x;
+  border-radius: 4px;
+  width: 25%;
+}
+  
+button[mat-stroked-button] {
+  margin-top: 16px; /* Space above the button */
+}
+  @media (max-width: 600px) {
+    .form-container {
+      padding: 8px;
+      box-sizing: border-box;
+      overflow: auto;   /* Reduced padding for smaller screens */
+    }
+  
+    mat-form-field {
+      margin-bottom: 5px; /* Reduced space between fields */
+    }
+  
+    .form-actions {
+      flex-direction: column; /* Stack buttons vertically */
+      align-items: flex-end; /* Align buttons to the right */
+    }
+  
+    button[mat-raised-button],
+    button[mat-stroked-button] {
+      width: 100%; /* Full width buttons on small screens */
+      margin-top: 0px; /* Space between buttons when stacked */
+    }
+  
+    .close-button {
+      position: fixed;
+      top: 18px;
+      right: 8px;
+    }
+    
+    
+  }

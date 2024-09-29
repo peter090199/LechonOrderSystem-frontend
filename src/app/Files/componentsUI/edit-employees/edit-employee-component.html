@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Edit Employee</h2>
+<mat-divider></mat-divider>
+<form [formGroup]="editEmployeeForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <mat-form-field appearance="standard">
+      <mat-label>Employee ID</mat-label>
+      <input matInput formControlName="empID" readonly>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard"  class="custom-focus" >
+      <mat-label>Employee Name</mat-label>
+      <input matInput formControlName="empName"  required>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Contact Number</mat-label>
+      <input matInput formControlName="contactNo" required>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" type="submit" >Save Changes</button>
+  </div>
+</form>

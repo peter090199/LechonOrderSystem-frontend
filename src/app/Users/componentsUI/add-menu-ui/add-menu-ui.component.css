@@ -1,0 +1,63 @@
+.table-container {
+    margin: 5px;
+    overflow: auto;
+    width: 100%;
+  }
+
+  /* Applies styling to the table for better visibility and readability */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Highlights the rows on hover for better interaction */
+  mat-row:hover {
+    background-color: #eeeeee;
+  }
+  
+  /* Ensures the table headers are sticky to the top of the container */
+  .mat-header-row {
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+    z-index: 1;
+  }
+  
+  /* Adds spacing between grid tiles */
+  mat-grid-tile {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+  }
+  .search-div
+  {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: sticky;
+  }
+  
+  /* checkbox */
+  .example-section {
+    margin: 12px 0;
+  }
+  
+  .example-margin {
+    margin: 0 12px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }
+/* Ensures the dialog actions are laid out properly */
+mat-dialog-actions {
+ 
+  padding: 16px; /* Adds padding to the dialog actions area */
+}
+
+/* Style for the Save and Cancel buttons */
+button.mat-raised-button {
+  margin-left: 85%;
+width: 180px;
+} 

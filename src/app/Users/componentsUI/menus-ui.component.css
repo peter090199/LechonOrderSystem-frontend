@@ -1,0 +1,55 @@
+
+
+  /* General form container styling */
+  .form-container {
+    overflow: auto;    /* Enable both horizontal and vertical scrolling */
+    padding: 0px;     /* Optional padding */
+    box-sizing: border-box; /* Include padding in element’s total width and height */
+    display: flex;
+  }
+  
+  /* Styling for form fields */
+  mat-form-field {
+    width: 100%;
+  }
+  
+  mat-form-field .mat-label {
+    font-weight: bold;
+  }
+  
+  mat-form-field .mat-error {
+    font-size: 0.875rem; /* Adjust error font size */
+  }
+  
+  /* Styling for action buttons */
+  .form-actions {
+    display: flex;
+    gap: 1px; /* Space between buttons */
+  }
+  
+
+
+  @media (max-width: 600px) {
+    .form-container {
+      padding: 4px;
+      box-sizing: border-box;
+      overflow: auto;   /* Reduced padding for smaller screens */
+    }
+  
+    button[mat-raised-button],
+    button[mat-stroked-button] {
+      width: 100%; /* Full width buttons on small screens */
+    }
+  
+    .buttonSave{
+       margin-top: 0px;
+       float: right;
+    }
+    .close-button {
+      position: fixed;
+      top: 18px;
+      right: 8px;
+    }
+    
+    
+  }

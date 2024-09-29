@@ -1,0 +1,24 @@
+.dashboard-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 24px;
+    gap: 2px;
+  
+
+  }
+ 
+  .dashboard-card {
+    width: 400px;
+    margin: 10px;
+    height: 200px;
+    animation: moveUp 1s linear; 
+    background-color: rgb(143, 48, 143);
+    color:white;
+    box-shadow: outset;
+  }
+
+
+
+  
+

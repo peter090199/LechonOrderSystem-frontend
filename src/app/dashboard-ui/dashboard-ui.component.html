@@ -1,0 +1,31 @@
+<div class="dashboard-content">
+  <mat-card 
+    class="dashboard-card" 
+    id="mat-card1"
+    [@slideUpDownAnimation]="{ value: '', params: { duration: '1s', delay: getAnimationDelay('mat-card1') } }">
+    <mat-card-title>Card 1</mat-card-title>
+    <mat-card-content>
+      Content for card 1.
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card 
+    class="dashboard-card" 
+    id="mat-card2"
+    [@slideUpDownAnimation]="{ value: '', params: { duration: '1s', delay: getAnimationDelay('mat-card2') } }">
+    <mat-card-title>Card 2</mat-card-title>
+    <mat-card-content>
+      Content for card 2.
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card 
+    class="dashboard-card" 
+    id="mat-card3"
+    [@slideUpDownAnimation]="{ value: '', params: { duration: '1s', delay: getAnimationDelay('mat-card3') } }">
+    <mat-card-title>Card 3</mat-card-title>
+    <mat-card-content>
+      Content for card 3.
+    </mat-card-content>
+  </mat-card>
+</div>

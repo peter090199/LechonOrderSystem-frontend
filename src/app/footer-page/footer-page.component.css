@@ -1,0 +1,24 @@
+
+.footer {
+    background-color:white;
+    padding: 10px;
+    text-align: left;
+    border-top: 1px solid #e6d2d2;
+    margin-top: 0px;
+   
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: right;
+
+  }
+  span {
+    float: left;
+  }
+  
+  .footer-spacer {
+    flex: 2;
+  }
+  

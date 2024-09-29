@@ -1,0 +1,147 @@
+.profile-container {
+    display: flex;
+    gap: 25px;
+    margin:2px;
+    width: 100%;
+    margin-bottom: 60px;
+  }
+  
+  
+  .profile-card {
+    width: 75%;
+    color:rgb(24, 24, 22);
+  }
+
+  mat-form-field [input] {
+    margin-bottom: 0px; /* Reduced space between fields */
+
+  }
+
+  button{
+    margin: 4px;
+    width: 100%;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .profile-photo {
+    background-size: cover;
+    padding: 19px;
+    max-height: 260px;
+
+  }
+  .input-space {
+    width: 20%;
+     margin-left: 7px; /* Adds horizontal space between input fields */
+  }
+  
+  .custom-width {
+    width: 420px; /* Set the desired width */
+  }
+  .upload-btn {
+    display: flex;
+    justify-content: center; /* Centering the button */
+    margin-top: 130%;
+}
+
+  
+  .file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+
+  .example-card {
+   width: 20%;
+   max-height: 410px;
+   background-attachment: fixed;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  
+.actions{
+   display: flex;
+   gap: 12px;
+ 
+}
+
+@media (max-width: 600px) {
+  .profile-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .profile-card,
+  .example-card {
+    width: 100%; /* Full width for mobile */
+  }
+
+  .mat-form-field {
+    width: 100%; /* Full width for mobile */
+  }
+
+  .actions {
+    justify-content: space-between;
+    margin: 5px;
+    gap: 10px;
+  }
+
+  .actions button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+/* Add this to your existing CSS file */
+
+/* Loading container styling */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center items horizontally */
+  height: 100vh; /* Full viewport height for centering */
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+  position: fixed; /* Position fixed to cover the whole screen */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+/* Loading spinner styling */
+.mat-spinner {
+  margin-bottom: 10px; /* Space between spinner and text */
+}
+
+/* Responsive text styling */
+.loading-container p {
+  font-size: 1.2rem; /* Base font size */
+  color: #333; /* Text color */
+  text-align: center; /* Center the text */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .loading-container p {
+    font-size: 1rem; /* Smaller font size for mobile */
+  }
+}
+
+@media (min-width: 769px) {
+  .loading-container p {
+    font-size: 1.5rem; /* Larger font size for desktop */
+  }
+}
+
+

@@ -1,0 +1,80 @@
+<mat-sidenav-container class="sidenav-container" >
+    <!-- Sidenav (Sidebar) -->
+    <mat-sidenav #drawer class="sidenav" mode="side" [opened]="!isMobile">
+      <!-- Close Icon for Mobile View -->
+      <div class="close-icon" *ngIf="isMobile">
+        <button mat-icon-button (click)="drawer.close()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+     
+  
+      <div class="logo">
+        <h2>Logo</h2>
+      
+      </div>
+       
+      <ul class="navbar-nav">
+        <li *ngFor="let module of Modules" class="nav-item"  >
+          <a  
+              [ngClass]="{'active-link': getPath(module.moduleName.toLowerCase()) == true}" 
+              type="button" 
+              [matMenuTriggerFor]="menu" 
+              id="navbarDropdownMenuLink"
+              >
+              {{module.moduleName}}
+          </a>
+          <mat-menu #menu="matMenu" >
+              <div *ngFor="let submodule of SubModules" >
+                  <button 
+                      *ngIf="module.id == submodule.moduleId" 
+                      routerLink="{{submodule.route.toLowerCase()}}"  
+                      mat-menu-item 
+                      (click)="onModuleClick()"
+                      >
+                      
+                      {{submodule.subModuleName}}
+                     
+                  </button>
+                  
+              </div>
+          </mat-menu> 
+          </li>
+      </ul>
+    </mat-sidenav>
+  
+    <!-- Main content area -->
+    <mat-sidenav-content>
+        <mat-toolbar  class="nav-toolbar custom-toolbar mat-elevation-z1" >
+            <button mat-icon-button (click)="drawer.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
+          
+            <span class="business-name" >{{systemTitle}} </span>
+              <button mat-icon-button 
+                    class="toolbar-icon">
+                 <mat-icon matBadge="{{notificationCount}}" matBadgeColor="accent" matBadgeOverlap="false">
+                notifications
+              </mat-icon>
+
+             </button>
+          
+              <span class="material-symbols-outlined" (click)="logout()" >
+                move_item
+              </span>
+            <span class="spacer" ></span>
+          
+          </mat-toolbar>
+            
+          <div class="content-area">
+            
+            <div class="productivity-card">
+             
+                <router-outlet></router-outlet>
+                <app-footer-page></app-footer-page>
+            </div>
+          </div>
+        
+    </mat-sidenav-content>
+    
+  </mat-sidenav-container>
