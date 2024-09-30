@@ -70,11 +70,7 @@ export class HeaderPageComponent implements OnInit {
    users:string='';
 
    ngOnInit(): void {
-    // this.username = this.sharedService.getUsername();
-    // this.users = this.username;
-    // console.log('Username:', this.users);
     this.username = this.logoutService.getUsername();
-   // console.log('Username:', this.username);
     if (this.username) {
       this.loadUserAndModules();
     } else {
@@ -87,8 +83,7 @@ export class HeaderPageComponent implements OnInit {
     try {
       const user = await firstValueFrom(this.userService.getUserByUsername(this.username));
       this.userRole = user.role.toLowerCase(); // Use 'admin' or 'user'
-    //  console.log('User Role:', this.userRole);
-
+     
       this.accessRights = await firstValueFrom(this.accessRightsService.getAccessRights());
       this.loadModulesAndSubModules();
     } catch (error) {
@@ -114,8 +109,9 @@ export class HeaderPageComponent implements OnInit {
         this.SubModules = allSubModules;
       } 
       else if (this.userRole.toLowerCase() === 'user') {
-        this.Modules = allModules.filter((module: { moduleName: string; }) =>
-          ['profile'].includes(module.moduleName.toLowerCase())
+        console.log(this.userRole)
+        this.Modules = allModules.filter((module: { moduleName: any; }) =>
+          ['profile','home','services'].includes(module.moduleName.toLowerCase())
         );
         this.SubModules = allSubModules.filter((submodule: any) => 
           this.accessRights.some((right: any) => right.subModuleId === submodule.subModuleId)

@@ -65,10 +65,10 @@ router-outlet {
 }
 
 .sidebar {
-  width: 20%; /* Width of the sidebar */
+  width: 40px; /* Width of the sidebar */
   height: 100vh; /* Full height of the viewport */
   position: fixed;
- background-color: whitesmoke;
+  background-color: rgb(218, 197, 212);
 
 }
 .sidebar a:hover {
@@ -81,7 +81,7 @@ router-outlet {
 
 @media (max-width: 768px) {
   .sidebar {
-    width: 200px; /* Adjust the width for smaller screens */
+    width: 100%; /* Adjust the width for smaller screens */
   }
   .sidebar:hover {
     width: 210px; /* Slightly increase width on hover for smaller screens */

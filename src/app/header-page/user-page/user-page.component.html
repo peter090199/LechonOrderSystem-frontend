@@ -1,8 +1,10 @@
   
-  <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
-  <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav mode="over" [opened]="isMobile$ | async">
+  <mat-sidenav-container class="example-container"  data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
+    <mat-sidenav #sidenav  [opened]="isMobile$ | async">
+      <span class="example-spacer"></span>
+     
       <mat-nav-list class="sidebar">
+       
         <a mat-list-item class="nav-link" [routerLink]="['/userPage']" (click)="onNavItemClick(sidenav)" href="#home">Home</a>
         <a mat-list-item class="nav-link" [routerLink]="['/login']" (click)="onNavItemClick(sidenav)" href="#home">Sign In</a>
         <a mat-list-item class="nav-link" [routerLink]="['/register']" (click)="onNavItemClick(sidenav)" href="#about">Sign Out</a>
@@ -14,10 +16,19 @@
         <nav class="navbar navbar-expand-sm custom-toolbar navbar-dark fixed-top">
           <div class="container-fluid">
           
-            <button mat-icon-button class="toggle-button" (click)="sidenav.toggle()">
+            <!-- <button mat-icon-button class="toggle-button" (click)="sidenav.toggle()">
                 <mat-icon class="menu-icon" *ngIf="!(sidenav.opened)">menu</mat-icon>
-                <mat-icon class="close-icon" *ngIf="sidenav.opened">X</mat-icon>
-                </button>
+                <mat-icon class="close-icon" *ngIf="sidenav.opened">close</mat-icon>
+                </button> -->
+
+                <button
+                    class="toggle-button"
+                    type="button"
+                    aria-label="Toggle sidenav"
+                    mat-icon-button
+                    (click)="sidenav.toggle()">
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+               </button>
                 <!-- Logo Section -->
                 <div class="logo-section">
                   <img src="https://t3.ftcdn.net/jpg/06/32/71/42/360_F_632714266_rdRiINnIMZC1SSroLc8e5Tb0sm3jN8i8.jpg" alt="Oink'menT" class="logo-img">
@@ -33,9 +44,9 @@
             </div>
         </nav>
       </mat-toolbar>
-      
+      <router-outlet></router-outlet>
      
     </mat-sidenav-content>
   </mat-sidenav-container>
-  </body>
+
   

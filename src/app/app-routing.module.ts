@@ -38,9 +38,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { 
-        path: 'dashboard', component: DashboardUiComponent,
-        canActivate: [AuthGuard],
-        data: { roles: ['admin'] }
+        path: 'home', component: DashboardUiComponent,
+        // canActivate: [AuthGuard],
+        // data: { roles: ['user'] }
       },
       {
         path: 'files/employees', component: EmployeesComponent,

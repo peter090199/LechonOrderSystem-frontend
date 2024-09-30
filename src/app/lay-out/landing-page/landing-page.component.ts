@@ -104,7 +104,7 @@ export class LandingPageComponent implements OnInit {
       } 
       else if (this.userRole.toLowerCase() === 'user') {
         this.Modules = allModules.filter((module: { moduleName: string; }) =>
-          ['profile'].includes(module.moduleName.toLowerCase())
+          ['profile','home','community','services'].includes(module.moduleName.toLowerCase())
         );
         this.SubModules = allSubModules.filter((submodule: any) => 
           this.accessRights.some((right: any) => right.subModuleId === submodule.subModuleId)
