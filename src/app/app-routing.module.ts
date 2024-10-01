@@ -16,6 +16,7 @@ import { LandingPageComponent } from './lay-out/landing-page/landing-page.compon
 import { UserProfileUIComponent } from './Profile/ComponentsUI/user-profile-ui/user-profile-ui.component';
 import { UserPageComponent } from './header-page/user-page/user-page.component';
 import { UserMenuPageComponent } from './header-page/user-menu-page/user-menu-page.component';
+import { HomeComponent } from './Home/componentsUI/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/userPage', pathMatch: 'full' },
@@ -39,8 +40,8 @@ const routes: Routes = [
     children: [
       { 
         path: 'home', component: DashboardUiComponent,
-        // canActivate: [AuthGuard],
-        // data: { roles: ['user'] }
+        canActivate: [AuthGuard],
+        data: { roles: ['user','admin'] }
       },
       {
         path: 'files/employees', component: EmployeesComponent,
@@ -49,6 +50,11 @@ const routes: Routes = [
       },
       { 
         path: 'files/clients', component: ClientsComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['admin'] }
+       },
+       { 
+        path: 'home/homeUI', component: HomeComponent,
         canActivate: [AuthGuard],
         data: { roles: ['admin'] }
        },

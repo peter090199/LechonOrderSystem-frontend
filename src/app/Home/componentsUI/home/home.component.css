@@ -1,0 +1,53 @@
+
+.gap{
+ margin-bottom: 20px;
+}
+
+.container {
+    width: 100%;
+    margin: 0px;
+    position: relative;
+  }
+  
+button{
+  margin: 0px;
+  padding: 0px;
+}
+mat-card{
+   width: 100%;
+   margin-top: 0px;
+   margin-bottom: 30px;
+}
+  /* Mobile view grid */
+  .mobile-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+  /* Responsive design adjustments */
+  @media (max-width: 599px) {
+    .mobile-grid {
+      padding: 0 10px;
+    }
+      
+    mat-card{
+      width: 100%;
+      margin-bottom: 30px;
+    }
+    .mobile-card {
+      width: 90%;
+    }
+  }
+  
+  @media (min-width: 600px) {
+    /* Container for desktop view */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+  }
+  

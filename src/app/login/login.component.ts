@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit{
       this.sharedService.setUserRole(userRole); // Save role
       this.notificationService.popupSwalMixin("Successfully Logged In.");
       if (userRole === 'admin') {
-        this.router.navigate(['/header/dashboard']);
+        this.router.navigate(['/header/home']);
       } 
       else {
         this.router.navigate(['/header']); // Default dashboard

@@ -35,7 +35,9 @@ import { UserProfileUIComponent } from './Profile/ComponentsUI/user-profile-ui/u
 import { ChangePasswordUIComponent } from './Profile/ComponentsUI/change-password-ui/change-password-ui.component';
 import { UserPageComponent } from './header-page/user-page/user-page.component';
 import { UserMenuPageComponent } from './header-page/user-menu-page/user-menu-page.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HomeComponent } from './Home/componentsUI/home/home.component';
+import { HomeTableComponent } from './Home/componentsTable/home-table/home-table.component';
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { UserMenuPageComponent } from './header-page/user-menu-page/user-menu-pa
     ChangePasswordUIComponent,
     UserPageComponent,
     UserMenuPageComponent,
+    HomeComponent,
+    HomeTableComponent,
   
   ],
   imports: [
@@ -76,7 +80,7 @@ import { UserMenuPageComponent } from './header-page/user-menu-page/user-menu-pa
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-
+    FlexLayoutModule
 
 
     

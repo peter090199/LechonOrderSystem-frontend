@@ -1,0 +1,32 @@
+  <div class="container-fixed">
+    <!-- Desktop & Tablet Grid Layout -->
+   
+    <mat-grid-list cols="4" gutterSize="10px" rowHeight="1:1" class="gap"  *ngIf="!isMobile">
+      <mat-grid-tile *ngFor="let stage of pigStages">
+        <mat-card class="h-180">
+          <img mat-card-image [src]="stage.imgUrl" alt="{{stage.name}}">
+          <mat-card-content>
+            <h5 class="text-center">{{ stage.name }}</h5>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="accent" class="w-100">View details</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  
+    <!-- Mobile Layout -->
+    <div class="d-block d-sm-none">
+      <mat-card *ngFor="let stage of pigStages" class="h-100">
+        <img mat-card-image [src]="stage.imgUrl" alt="{{stage.name}}">
+        <mat-card-content>
+          <h5 class="text-center">{{ stage.name }}</h5>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" class="w-100">View details</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  
