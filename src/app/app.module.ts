@@ -38,7 +38,8 @@ import { HomeTableComponent } from './Home/componentsTable/home-table/home-table
 import { ProductItemsComponent } from './Files/components/product-items/product-items.component';
 import { ProductsUIComponent } from './Files/componentsUI/products-ui/products-ui.component';
 import { ProductDetailsComponent } from './Home/componentsUI/product-details/product-details.component';
-
+import { DecimalPipe } from '@angular/common';
+import { ViewOrderTableComponent } from './Home/componentsTable/view-order-table/view-order-table.component'; // Import DecimalPipe
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ProductDetailsComponent } from './Home/componentsUI/product-details/pro
     ProductItemsComponent,
     ProductsUIComponent,
     ProductDetailsComponent,
+    ViewOrderTableComponent,
   
   ],
   imports: [
@@ -87,7 +89,7 @@ import { ProductDetailsComponent } from './Home/componentsUI/product-details/pro
     
 
   ],
-  providers: [DatePipe, JwtHelperService,
+  providers: [DatePipe, JwtHelperService,DecimalPipe, 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }
   ],
   

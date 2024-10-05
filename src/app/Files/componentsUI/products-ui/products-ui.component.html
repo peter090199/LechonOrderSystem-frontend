@@ -1,32 +1,42 @@
 <button mat-icon-button class="close-button" [mat-dialog-close]="true">
     <mat-icon class="close-icon" color="warn">close</mat-icon>
   </button>
-  <h2 mat-dialog-title>{{btnSave}} Products</h2>
-  <mat-divider></mat-divider>
-  <form [formGroup]="EmployeeForm" (ngSubmit)="onSubmit()">
-    <div mat-dialog-content>
-        <mat-form-field  appearance="standard">
-            <mat-label>EmpID</mat-label>
-            <mat-checkbox (change)="onCheck($event.checked)" [checked]=" !data || ( data.EmpID != null ? data.EmpID.includes('CTU') :  true) " [disabled]="data">
-            </mat-checkbox>
-            <input class="" matInput placeholder="Input EmpID" autocomplete="off"  required formControlName="empID">
-        </mat-form-field>
-        <mat-form-field class="" appearance="standard">
-            <mat-label>Employee Name</mat-label>
-            <input matInput placeholder="Input EmployeeName" autocomplete="off" required formControlName="empName">
-        </mat-form-field>
-            <mat-form-field class="" appearance="standard">
-                <mat-label>Address</mat-label>
-                <input matInput placeholder="Input Address" autocomplete="off" required formControlName="address">
-            </mat-form-field>
-                <mat-form-field class=""  appearance="standard">
-                    <mat-label>ContactNo</mat-label>
-                    <input matInput placeholder="Input ContactNo"  autocomplete="off" required formControlName="contactNo">
-                </mat-form-field>
-    </div>
-    <div class="button-container">
-        <button type="submit"  mat-raised-button color="primary" [disabled]="EmployeeForm.invalid">{{btnSave}}</button>
-    </div>
-    
-  </form>
-  
+<h2>Upload Product</h2>
+<form [formGroup]="EmployeeForm" (ngSubmit)="onSubmit()" style="overflow: auto;" >
+  <mat-form-field appearance="standard">
+    <mat-label>Product ID</mat-label>
+    <input matInput placeholder="Input Product ID" formControlName="empID" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Product Name</mat-label>
+    <input matInput placeholder="Input Product Name" formControlName="empName" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Category</mat-label>
+    <input matInput placeholder="Input Category" formControlName="address" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Price</mat-label>
+    <input matInput placeholder="Input Price" formControlName="contactNo" required />
+  </mat-form-field>
+
+  <!-- Product Image Upload -->
+  <div class="upload-section">
+      <input type="file" (change)="onUploadPhoto($event)" accept="image/*" />
+  </div>
+
+  <!-- Optional: Image Preview -->
+  <div *ngIf="previewUrl" class="image-preview">
+    <img [src]="previewUrl" alt="Image Preview" style="max-width: 50%; height: 100px;" *ngIf="previewUrl; else placeholder"  />
+    <ng-template #placeholder>
+        <p>No image available.</p>
+    </ng-template>
+  </div>
+
+  <div class="button-container">
+    <button type="submit" mat-raised-button color="primary" [disabled]="EmployeeForm.invalid">Submit</button>
+  </div>
+</form>

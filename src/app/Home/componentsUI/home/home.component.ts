@@ -5,6 +5,7 @@ import { NotificationsService } from 'src/app/Global/notifications.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver,
     private alert:NotificationsService, private dialog : MatDialog,
+    private router:Router
 
   ) { }
   
@@ -54,13 +56,16 @@ export class HomeComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '880px';
+    dialogConfig.width = '900px';
     const dialogRef = this.dialog.open(ProductDetailsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
        // this.loadProducts(); // Refresh the table after dialog closure
       }
     });
+  }
+  ViewOrder():void{
+    this.router.navigate(['header/home/view-order']); 
   }
   loadProducts() {
     throw new Error('Method not implemented.');

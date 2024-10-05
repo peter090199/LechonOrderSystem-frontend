@@ -1,0 +1,49 @@
+.search-div
+{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+
+}
+/* Loading container styling */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center items horizontally */
+    height: 100vh; /* Full viewport height for centering */
+    background-color: rgba(255, 255, 255, 0); /* Slightly transparent background */
+    position: fixed; /* Position fixed to cover the whole screen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000; /* Ensure it appears above other content */
+  }
+  
+  /* Loading spinner styling */
+  .mat-spinner {
+    margin-bottom: 10px; /* Space between spinner and text */
+  }
+  
+  /* Responsive text styling */
+  .loading-container p {
+    font-size: 0.2rem; /* Base font size */
+    color: #333; /* Text color */
+    text-align: center; /* Center the text */
+  }
+
+  /* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .loading-container p {
+      font-size: 1rem; /* Smaller font size for mobile */
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .loading-container p {
+      font-size: 1.5rem; /* Larger font size for desktop */
+    }
+  }
+  

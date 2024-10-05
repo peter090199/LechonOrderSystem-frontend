@@ -76,7 +76,7 @@ export class ProductItemsComponent implements OnInit {
       
     }
     else{
-      this.notificationsService.popupWarning(employee.empName,"-"+"Are you sure to delete this employee?").then((result) => {
+      this.notificationsService.popupWarning(employee.empName," "+"Are you sure to delete this product?").then((result) => {
         if (result.value) {
           this.employeeService.deleteEmployee(employee.empID).subscribe({
               next:()=>{

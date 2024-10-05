@@ -1,11 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotificationsService } from 'src/app/Global/notifications.service';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  styleUrls: ['./product-details.component.css'],
+  providers: [DecimalPipe] 
 })
 export class ProductDetailsComponent implements OnInit {
 
@@ -15,10 +17,13 @@ export class ProductDetailsComponent implements OnInit {
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<ProductDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private decimalPipe: DecimalPipe,
     private alert:NotificationsService
   ) {}
+  
 
-  Price = 72;
+  Price: number = 10000;
+
 
   product = {
     name: 'Nike Socks Basketball Socks NB A Sport Elite Socks Iconic',
@@ -30,8 +35,14 @@ export class ProductDetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.formattedValue();
   }
 
+  
+  formattedValue(): string {
+    return this.decimalPipe.transform(this.Price, '1.2-2') ?? '0.00';
+  }
+  
 // Method to handle quantity increment/decrement
 updateQuantity(change: number): void {
   // Update quantity
@@ -60,5 +71,10 @@ onQuantityInputChange(newQuantity: number): void {
   // Function to find similar products
   findSimilar(): void {
     alert(`Finding similar products to ${this.data.name}...`);
+  }
+  cart = 1;
+  AddToCart():void{
+    console.log(this.cart)
+    this.alert.toastrInfo("Successfully Add Order")
   }
 }

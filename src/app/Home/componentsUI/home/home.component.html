@@ -8,16 +8,15 @@
         </button>
       </mat-form-field>
         <!-- Shopping Cart Button with Notification Badge -->
-        <button mat-icon-button class="material-symbols-outlined"
-        matTooltip="View Order"
-        matTooltipClass="example-tooltip-red"
-        aria-label="Button that shows a red tooltip"
-        class="example-button">
-
+        <button mat-icon-button class="material-symbols-outlined"(click)="ViewOrder()" 
+            matTooltip="View Order"
+            matTooltipClass="example-tooltip-red"
+            aria-label="Button that shows a red tooltip"
+            class="example-button">
           <mat-icon matBadge="{{notificationCount}}" matBadgeColor="accent" matBadgeOverlap="false">
             shopping_cart
           </mat-icon>
-          
+        
         </button>
     </div>
     

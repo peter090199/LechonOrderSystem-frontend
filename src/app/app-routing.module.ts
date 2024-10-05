@@ -17,6 +17,9 @@ import { UserPageComponent } from './header-page/user-page/user-page.component';
 import { UserMenuPageComponent } from './header-page/user-menu-page/user-menu-page.component';
 import { HomeComponent } from './Home/componentsUI/home/home.component';
 import { ProductItemsComponent } from './Files/components/product-items/product-items.component';
+import { ViewOrderTableComponent } from './Home/componentsTable/view-order-table/view-order-table.component';
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/userPage', pathMatch: 'full' },
@@ -52,6 +55,11 @@ const routes: Routes = [
         path: 'files/clients', component: ClientsComponent,
         canActivate: [AuthGuard],
         data: { roles: ['admin'] }
+       },
+       { 
+        path: 'home/view-order', component: ViewOrderTableComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['admin','user'] }
        },
        { 
         path: 'menus/menu', component: HomeComponent,

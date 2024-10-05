@@ -47,8 +47,23 @@
     border-radius: 4px;
     width: 25%;
   }
-    
-  
+
+.upload-section {
+  margin: 0px 0;
+}
+
+.upload-section label {
+  display: inline-block;
+  padding: 10px;
+  background-color: #a9aaaf; /* Primary color */
+  color: white;
+  cursor: pointer;
+}
+
+.image-preview {
+  margin-top: 2px;
+}
+
   @media (max-width: 600px) {
     .form-container {
       padding: 8px;
@@ -58,6 +73,9 @@
   
     mat-form-field {
       margin-bottom: 12px; /* Reduced space between fields */
+    }
+    .image-preview {
+      margin-top: 2px;
     }
   
     .form-actions {

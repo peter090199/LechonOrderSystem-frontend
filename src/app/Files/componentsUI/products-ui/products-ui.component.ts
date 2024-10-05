@@ -30,6 +30,8 @@ export class ProductsUIComponent implements OnInit {
 
   btnSave     : string = "Save";
   loading     : boolean = false;
+  selectedFile: File | null = null;
+  previewUrl: string | ArrayBuffer | null = null;
 
   EmployeeForm = new FormGroup({
               id      : new FormControl(0),
@@ -38,6 +40,7 @@ export class ProductsUIComponent implements OnInit {
               address      : new FormControl(''),
               contactNo     : new FormControl(''),
   });
+  
   
   constructor(
     private dialog            : MatDialog,
@@ -69,13 +72,26 @@ export class ProductsUIComponent implements OnInit {
     this.EmployeeForm.controls['address'].setValue(this.data.address);
     this.EmployeeForm.controls['contactNo'].setValue(this.data.contactNo);
   }
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    this.EmployeeForm.patchValue({
+        image: file
+    });
+}
+
 
   onSubmit() {
     this.loading = true;
-   const employeeData = this.EmployeeForm.getRawValue();
-  
+    const employeeData = this.EmployeeForm.getRawValue();
+   if (this.EmployeeForm.valid) {
+
     if (this.btnSave == "Save")
        {
+        const formData = new FormData();
+        Object.keys(this.EmployeeForm.controls).forEach(key => {
+            formData.append(key, this.EmployeeForm.get(key)?.value);
+        });
+        console.log(formData)
         this.empService.postEmployee(employeeData).subscribe({
           next: (res) => {
             this.notificationService.popupSwalMixin("Successfully Saved.");
@@ -103,12 +119,42 @@ export class ProductsUIComponent implements OnInit {
       });
     }
   }
+  }
   
+  // Handle file selection
+  onFileSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.selectedFile = file;
+
+      // Preview the selected image
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
+  onUploadPhoto(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+
+      
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.previewUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
 
   onCheck(data: any) {
     if (data) {
       this.EmployeeForm.controls['empID'].disable();
-      this.EmployeeForm.controls['empID'].setValue('generated');
+      this.EmployeeForm.controls['empID'].setValue('Generated');
     }
     else {
       this.EmployeeForm.controls['empID'].enable();
