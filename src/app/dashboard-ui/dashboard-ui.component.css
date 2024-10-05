@@ -2,19 +2,19 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 24px;
-    gap: 2px;
+    margin: 10px;
+    gap: 1px;
   
 
   }
  
   .dashboard-card {
-    width: 400px;
-    margin: 10px;
+    width: 360px;
+    margin-top: 10px;
     height: 200px;
     animation: moveUp 1s linear; 
-    background-color: rgb(143, 48, 143);
-    color:white;
+    background-color: rgba(228, 13, 156, 0.788);
+    color:rgb(20, 19, 19);
     box-shadow: outset;
   }
 

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardUiComponent } from './dashboard-ui/dashboard-ui.component';
-import { EmployeesComponent } from './Files/components/employees/employees.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
@@ -17,6 +16,7 @@ import { UserProfileUIComponent } from './Profile/ComponentsUI/user-profile-ui/u
 import { UserPageComponent } from './header-page/user-page/user-page.component';
 import { UserMenuPageComponent } from './header-page/user-menu-page/user-menu-page.component';
 import { HomeComponent } from './Home/componentsUI/home/home.component';
+import { ProductItemsComponent } from './Files/components/product-items/product-items.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/userPage', pathMatch: 'full' },
@@ -44,7 +44,7 @@ const routes: Routes = [
         data: { roles: ['user','admin'] }
       },
       {
-        path: 'files/employees', component: EmployeesComponent,
+        path: 'files/product/items', component: ProductItemsComponent,
         canActivate: [AuthGuard],
         data: { roles: ['admin'] }
       },
@@ -54,9 +54,9 @@ const routes: Routes = [
         data: { roles: ['admin'] }
        },
        { 
-        path: 'home/homeUI', component: HomeComponent,
+        path: 'menus/menu', component: HomeComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['admin'] }
+        data: { roles: ['admin','user'] }
        },
       { 
         path: 'user/role', component: UserRoleComponent,

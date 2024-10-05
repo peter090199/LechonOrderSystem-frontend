@@ -1,18 +1,30 @@
 import { Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { NotificationsService } from 'src/app/Global/notifications.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  isMobile : boolean = false;
 
-  constructor(private breakpointObserver: BreakpointObserver
+  isMobile : boolean = false;
+  placeHolder       : string = "Search";
+  searchKey         : string = "";
+
+
+  constructor(private breakpointObserver: BreakpointObserver,
+    private alert:NotificationsService, private dialog : MatDialog,
 
   ) { }
   
+  notificationCount = 5; 
+
   pigStages = [
     { name: '1 month old piglet', imgUrl: 'assets/R.jpg' },
     { name: '3 - 6 months pig', imgUrl: 'assets/3 - 6 months pig.jpg' },
@@ -27,6 +39,31 @@ export class HomeComponent implements OnInit {
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe((result) => {
       this.isMobile = result.matches;
     });
+  }
+  
+  applyFilter(){
+   // this.employee.filter = this.searchKey.trim().toLocaleLowerCase();
+  }
+  clearSearch(){
+    this.searchKey = "";
+    this.applyFilter();
+
+  }
+
+  ViewDetails(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '880px';
+    const dialogRef = this.dialog.open(ProductDetailsComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+       // this.loadProducts(); // Refresh the table after dialog closure
+      }
+    });
+  }
+  loadProducts() {
+    throw new Error('Method not implemented.');
   }
 
 }

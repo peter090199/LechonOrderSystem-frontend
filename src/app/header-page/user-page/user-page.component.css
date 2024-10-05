@@ -17,7 +17,7 @@
 .brand-title {
   font-size: 24px; /* Adjusts the font size of the title */
   font-weight: bold; /* Makes the text bold */
-  color: #333; /* Dark gray color for the text */
+  color: #fcf7f7; /* Dark gray color for the text */
   font-family: 'Arial', sans-serif; /* Changes the font family */
 }
 
@@ -32,14 +32,15 @@
   text-decoration: none;
 }
 .nav-link:hover {
-  background-color: gainsboro;
+  background-color: rgba(220, 220, 220, 0.137);
 }
 .logo-section {
   display: flex;
   align-items: center;
 }
 .custom-toolbar{
-  background-color: white;
+  background-color:rgb(138, 20, 138);
+  color: rgb(236, 231, 231);
 }
 
 mat-sidenav-content {

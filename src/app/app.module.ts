@@ -11,12 +11,9 @@ import { MaterialModule } from 'src/Material/Material.module';
 import { DatePipe } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-
 import { FooterPageComponent } from './footer-page/footer-page.component';
 import { DashboardUiComponent } from './dashboard-ui/dashboard-ui.component';
 import { EmployeesUIComponent } from './Files/componentsUI/employees-ui/employees-ui.component';
-import { EmployeesComponent } from './Files/components/employees/employees.component';
 import { ClientsComponent } from './Files/components/clients/clients.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -38,6 +35,9 @@ import { UserMenuPageComponent } from './header-page/user-menu-page/user-menu-pa
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './Home/componentsUI/home/home.component';
 import { HomeTableComponent } from './Home/componentsTable/home-table/home-table.component';
+import { ProductItemsComponent } from './Files/components/product-items/product-items.component';
+import { ProductsUIComponent } from './Files/componentsUI/products-ui/products-ui.component';
+import { ProductDetailsComponent } from './Home/componentsUI/product-details/product-details.component';
 
 
 @NgModule({
@@ -47,8 +47,6 @@ import { HomeTableComponent } from './Home/componentsTable/home-table/home-table
     FooterPageComponent,
     DashboardUiComponent,
     EmployeesUIComponent,
-    EmployeesUIComponent,
-    EmployeesComponent,
     ClientsComponent,
     LoginComponent,
     RegisterComponent,
@@ -68,6 +66,9 @@ import { HomeTableComponent } from './Home/componentsTable/home-table/home-table
     UserMenuPageComponent,
     HomeComponent,
     HomeTableComponent,
+    ProductItemsComponent,
+    ProductsUIComponent,
+    ProductDetailsComponent,
   
   ],
   imports: [

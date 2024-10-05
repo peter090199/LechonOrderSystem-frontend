@@ -1,6 +1,26 @@
   <div class="container-fixed">
     <!-- Desktop & Tablet Grid Layout -->
-   
+    <div class="search-div">
+      <mat-form-field  floatLabel="never" appearance="standard">
+        <input matInput [(ngModel)]="searchKey" [placeholder]="placeHolder" (keyup)="applyFilter()" autocomplete="false">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+        <!-- Shopping Cart Button with Notification Badge -->
+        <button mat-icon-button class="material-symbols-outlined"
+        matTooltip="View Order"
+        matTooltipClass="example-tooltip-red"
+        aria-label="Button that shows a red tooltip"
+        class="example-button">
+
+          <mat-icon matBadge="{{notificationCount}}" matBadgeColor="accent" matBadgeOverlap="false">
+            shopping_cart
+          </mat-icon>
+          
+        </button>
+    </div>
+    
     <mat-grid-list cols="4" gutterSize="10px" rowHeight="1:1" class="gap"  *ngIf="!isMobile">
       <mat-grid-tile *ngFor="let stage of pigStages">
         <mat-card class="h-180">
@@ -9,7 +29,7 @@
             <h5 class="text-center">{{ stage.name }}</h5>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="accent" class="w-100">View details</button>
+            <button mat-raised-button color="accent" class="w-100" (click)="ViewDetails()">View details</button>
           </mat-card-actions>
         </mat-card>
       </mat-grid-tile>
@@ -23,7 +43,7 @@
           <h5 class="text-center">{{ stage.name }}</h5>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="accent" class="w-100">View details</button>
+          <button mat-raised-button color="accent" class="w-100" (click)="ViewDetails()">View Details</button>
         </mat-card-actions>
       </mat-card>
     </div>

@@ -4,16 +4,16 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { EmployeesService } from 'src/app/services/employees.service';
-import { EmployeesUIComponent } from '../../componentsUI/employees-ui/employees-ui.component';
+import { ProductsUIComponent } from '../../componentsUI/products-ui/products-ui.component';
 import { firstValueFrom } from 'rxjs';
 import { NotificationsService } from 'src/app/Global/notifications.service';
-@Component({
-  selector: 'app-employees',
-  templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.css']
-})
 
-export class EmployeesComponent implements OnInit {
+@Component({
+  selector: 'app-product-items',
+  templateUrl: './product-items.component.html',
+  styleUrls: ['./product-items.component.css']
+})
+export class ProductItemsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'empID', 'empName', 'address', 'contactNo', 'actions'];
   employee = new MatTableDataSource<any>([]);
   isLoading = true;
@@ -31,7 +31,7 @@ export class EmployeesComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.loadEmployees();
+    this.loadProducts();
   }
 
   applyFilter(){
@@ -47,15 +47,15 @@ export class EmployeesComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '400px';
-    const dialogRef = this.dialog.open(EmployeesUIComponent, dialogConfig);
+    const dialogRef = this.dialog.open(ProductsUIComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loadEmployees(); // Refresh the table after dialog closure
+        this.loadProducts(); // Refresh the table after dialog closure
       }
     });
   }
   
-  async loadEmployees(): Promise<void> {
+  async loadProducts(): Promise<void> {
     try {
       this.isLoading = true;
       this.employees = await firstValueFrom(this.employeeService.getEmployees());
@@ -81,11 +81,11 @@ export class EmployeesComponent implements OnInit {
           this.employeeService.deleteEmployee(employee.empID).subscribe({
               next:()=>{
                 this.notificationsService.popupSwalMixin("Successfuly deleted "+ employee.empName);
-                this.loadEmployees();
+                this.loadProducts();
               },
               error:()=>{
                 this.notificationsService.toastrError("no employee id");
-                this.loadEmployees();
+                this.loadProducts();
               },
           });
         }
@@ -94,14 +94,14 @@ export class EmployeesComponent implements OnInit {
   }
 
   editEmployee(data?: any): void {
-    const dialogRef = this.dialog.open(EmployeesUIComponent, {
+    const dialogRef = this.dialog.open(ProductsUIComponent, {
       width: '400px',
       data: data || null
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loadEmployees();
+        this.loadProducts();
       }
     });
   }

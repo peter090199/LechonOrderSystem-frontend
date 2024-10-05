@@ -1,0 +1,205 @@
+.cart-item-container {
+    margin-bottom: 0px;
+    padding: 0px;
+}
+    .button-Order{
+        background-color:rgb(138, 20, 138);
+        color: white;
+    }
+    
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    border-radius: 12px;
+    margin: 0px;
+  }
+  .material-symbols-outlined{
+   color: white;
+  }
+  .card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .left-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .product-image {
+    width: 240px;
+    max-height: 240px;
+    margin-top: 0px;
+  }
+  
+  .right-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 12px;
+    padding: 2px;
+    width: 20%;
+    margin-top: 0px;
+  }
+  
+  .product-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .product-variations {
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  .product-pricing {
+    display: flex;
+    margin-top: 8px;
+    justify-content: space-between;
+    padding-left:0px;
+  }
+  
+  .discount-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 8px;
+    margin-left: 0px;
+  }
+  
+  .sale-price {
+    color: #d32f2f;
+    font-weight: 600;
+  }
+  
+  .quantity-section {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    padding: 25px;
+  }
+  
+  .quantity-input {
+    width: 40px;
+    text-align: center;
+    margin: 0 8px;
+  }
+  
+  .actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .actions button {
+    font-size: 0.9rem;
+  }
+
+  .product-price{
+   padding:2px;
+   padding-right: 6px;
+  }
+  .sale-price{
+    padding-right: 60px;
+    padding-left: 2px;
+  }
+  
+  /* MOBILE RESPONSIVENESS */
+  @media screen and (max-width: 768px) {
+    .product-card {
+      padding: 2px;
+    }
+    .material-symbols-outlined{
+        color: white;
+        background-color:rgb(138, 20, 138);
+       }
+    .card-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .left-content {
+      margin-bottom: 0px;
+    }
+  
+    .product-image {
+      width: 100%;  /* Smaller image size for mobile */
+      margin-top: 20px;
+    }
+  
+    .right-content {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .product-title {
+      font-size: 1rem;  /* Smaller font size for mobile */
+    }
+  
+    .product-variations {
+      font-size: 0.8rem;  /* Smaller font size for mobile */
+    }
+  
+    .product-pricing {
+      flex-direction: column;  /* Stack prices vertically */
+      margin-top: 0px;
+      text-align: center;
+      margin-left: 12px;
+    }
+   
+    .discount-price,
+    .sale-price {
+      padding: 2px;
+      text-align: center;
+    }
+  
+    .quantity-section {
+      margin-top: 0px;
+      justify-content: flex-start;
+      padding: 12px;
+    }
+  
+    .quantity-input {
+      width: 100%;  /* Smaller quantity input for mobile */
+    }
+  
+    .actions {
+      margin-top: 2px;
+      width: 100%;
+      padding: auto;
+    }
+  
+    .actions button {
+      margin: 10px;
+      width: 100%;
+    }
+    .button-Order {
+        width: auto; /* Reset to auto on larger screens */
+    }
+    .close-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        color: #f44336; /* Red color for delete/close */
+      }
+
+  }
+  
+  
+
+  .close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #f44336; /* Red color for delete/close */
+  }

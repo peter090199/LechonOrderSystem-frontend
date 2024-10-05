@@ -26,12 +26,15 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { _systemTitle } from 'src/global-variables';
 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.css']
 })
+
+
 export class UserPageComponent implements OnInit {
   isLoading = true; // Start with loading true
   onNavItemClick(sidenav: MatSidenav) {
@@ -50,6 +53,8 @@ export class UserPageComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
+  systemTitle :string =_systemTitle;
+  
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
