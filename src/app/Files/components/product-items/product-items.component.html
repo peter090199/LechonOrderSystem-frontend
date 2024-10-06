@@ -23,7 +23,19 @@
           <mat-header-cell *matHeaderCellDef>ProductID</mat-header-cell>
           <mat-cell *matCellDef="let employee">{{ employee.empID }}</mat-cell>
         </ng-container>
-  
+
+        <ng-container matColumnDef="imagePath">
+          <mat-header-cell *matHeaderCellDef>Product Image</mat-header-cell>
+          <mat-cell *matCellDef="let employee">
+              <img 
+                  [src]="getImagePath(employee.imagePath)" 
+                  alt="{{ employee.imagePath}}" 
+                  class="product-image" 
+              />
+              <span *ngIf="!employee.imagePath">No Image Available</span> <!-- Fallback text -->
+          </mat-cell>
+      </ng-container>
+      
         <ng-container matColumnDef="empName">
           <mat-header-cell *matHeaderCellDef>Product Name</mat-header-cell>
           <mat-cell *matCellDef="let employee">{{ employee.empName }}</mat-cell>

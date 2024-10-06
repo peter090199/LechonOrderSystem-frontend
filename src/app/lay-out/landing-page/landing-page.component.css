@@ -13,7 +13,7 @@
   
   .content-area {
     margin-top: 48px; /* Push down content to avoid it being hidden under the toolbar */
-    padding: 15px;    /* Optional padding for aesthetics */
+    padding: 5px;    /* Optional padding for aesthetics */
     overflow: auto; /* Enable scrolling for the content area */
  
   }

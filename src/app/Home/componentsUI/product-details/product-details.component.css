@@ -7,7 +7,7 @@
         color: white;
     }
 
-  .product-card {
+  .product-cards{
     display: flex;
     flex-direction: column;
     padding-left: 15px;
@@ -69,13 +69,12 @@
     margin-top: 8px;
     justify-content: space-between;
     padding-left:0px;
+    gap:2px;
   }
   
   .discount-price {
     text-decoration: line-through;
     color: #999;
-    margin-right: 8px;
-    margin-left: 0px;
   }
   
   .sale-price {
@@ -111,13 +110,13 @@
   }
 
   .product-price{
-   padding:2px;
-   padding-right: 6px;
+    display: flex;
+    margin-top: 8px;
+    justify-content: space-between;
+    padding-left:12px;
+    gap:2px;
   }
-  .sale-price{
-    padding-right: 60px;
-    padding-left: 2px;
-  }
+
   
   /* MOBILE RESPONSIVENESS */
   @media screen and (max-width: 768px) {

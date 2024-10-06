@@ -12,6 +12,13 @@
     flex-wrap: wrap;
 
 }
+.product-image {
+  width: 100px; /* Set the desired width */
+  height: 40px; /* Set the desired height */
+  object-fit: cover; /* Ensures the image covers the given dimensions */
+  border-radius: 7px; /* Optional: adds a rounded corner effect */
+}
+
 
   .mat-table {
     width: 100%;

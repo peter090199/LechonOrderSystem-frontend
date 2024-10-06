@@ -10,7 +10,7 @@ import { Employees } from '../Model/Employees';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeesService {
+export class ProductsService {
   // Define HTTP options for headers, if needed
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,12 +29,12 @@ export class EmployeesService {
     return this._refreshrequired;
   }
 
-  getEmployees(): Observable<Employees[]> {
-    return this.http.get<Employees[]>(_url+"Employees");
+  getEmployees(): Observable<any> {
+    return this.http.get<any>(_url+"Products");
   }
     // save 
-    postEmployee(EmployeeForm: any): Observable<any>{
-      return this.http.post<any>(_url+'Employees/SavedEmployees',EmployeeForm).pipe(
+    postEmployee(employeeData: FormData): Observable<any>{
+      return this.http.post<any>(_url+'Products/SavedProducts',employeeData).pipe(
         tap(()=>{
           this.RequiredRefresh.next();
         }),
@@ -49,7 +49,7 @@ export class EmployeesService {
     
   // // PUT: Update an existing employee
   updateEmployee(EmployeeForm: any, id: number): Observable<void> {
-    const url = `${_url}Employees/${id}`; // Correct URL construction
+    const url = `${_url}Products/${id}`; // Correct URL construction
     return this.http.put<void>(url, EmployeeForm, this.httpOptions) // Pass EmployeeForm as the body
       .pipe(
         catchError(this.handleError<void>('updateEmployee'))
@@ -57,9 +57,30 @@ export class EmployeesService {
   }
   
     deleteEmployee(empID: string): Observable<void> {
-      return this.http.delete<void>(`${_url}Employees/${empID}`);
+      return this.http.delete<void>(`${_url}Products/${empID}`);
     }
 
+    getproductsById(id: number): Observable<void> {
+      const url = `${_url}Products/${id}`; // Correct URL construction
+      return this.http.put<void>(url, this.httpOptions) // Pass EmployeeForm as the body
+        .pipe(
+          catchError(this.handleError<void>('getproductsById'))
+        );
+    }
+
+    // getproductsByImageName(empName: string): Observable<void> {
+    //   const url = `${_url}Products/GetProductByImageName/${empName}`; // Correct URL construction
+    //   return this.http.put<void>(url, this.httpOptions) // Pass EmployeeForm as the body
+    //     .pipe(
+    //       catchError(this.handleError<void>('getproductsByImageName'))
+    //     );
+    // }
+
+    getproductsByImageName(data: any): Observable<any> {
+      const url = `${_url}Products/GetProductByImageName/${data}`;
+      return this.http.get<any>(url);
+    }
+    
     
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

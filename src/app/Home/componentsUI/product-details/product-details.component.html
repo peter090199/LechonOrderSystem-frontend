@@ -1,6 +1,6 @@
 
     
-    <mat-card class="product-card">
+    <mat-card class="product-cards">
         <button mat-icon-button class="close-button" [mat-dialog-close]="true">
             <mat-icon class="close-icon" color="warn">close</mat-icon>
           </button>
@@ -9,25 +9,25 @@
        
         <div class="left-content">
           <!-- Product Image -->
-          <img src="assets/Letchon.jpg" alt="Product" class="product-image">
+          <img [src]="getImagePath(product?.imagePath)"  class="product-image">
         </div>
   
           <!-- Product Details -->
           <div class="product-details">
-            <h3 class="product-title">Lechon Pig</h3>
-            <p class="product-variations">Variations: yellow, purple</p>
+            <h3 class="product-title">{{ product?.empName }}</h3>
+            <p class="product-variations">{{ product?.address}}</p>
           </div>
             <!-- Price Details -->
             <div class="product-pricing">
-              <span class="product-price discount-price">₱219</span>
-              <span class="product-price sale-price">₱{{ Price | number: '1.2-2' }}</span>
+              <span class="product-price">₱{{product?.contactNo}}</span>
+              <span class="product-price">₱{{totalPrice | number: '1.2-2' }}</span>
             </div>
           <!-- Quantity Selector -->
           <div class="quantity-section">
             <button mat-icon-button (click)="updateQuantity(-1)">
               <mat-icon>remove</mat-icon>
             </button>
-            <input matInput type="number" [(ngModel)]="product.quantity" 
+            <input matInput type="number" [(ngModel)]="quantity" 
             (ngModelChange)="onQuantityInputChange($event)" 
             min="1" class="quantity-input">
             <button mat-icon-button (click)="updateQuantity(1)">

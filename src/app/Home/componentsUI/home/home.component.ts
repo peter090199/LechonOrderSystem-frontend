@@ -6,6 +6,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { ProductsService } from 'src/app/services/products.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,32 +20,48 @@ export class HomeComponent implements OnInit {
   isMobile : boolean = false;
   placeHolder       : string = "Search";
   searchKey         : string = "";
-
+  isLoading: boolean = true;
 
   constructor(private breakpointObserver: BreakpointObserver,
     private alert:NotificationsService, private dialog : MatDialog,
-    private router:Router
+    private router:Router,
+    private products:ProductsService
 
   ) { }
   
   notificationCount = 5; 
-
-  pigStages = [
-    { name: '1 month old piglet', imgUrl: 'assets/R.jpg' },
-    { name: '3 - 6 months pig', imgUrl: 'assets/3 - 6 months pig.jpg' },
-    { name: '8 - 10 months pig', imgUrl: 'assets/8 - 10 months pig.jpg' },
-    { name: 'Sow', imgUrl: 'assets/Sow.jpg' },
-    { name: 'Letchon', imgUrl: 'assets/Letchon.jpg' },
-    { name: 'Butchered Pig', imgUrl: 'assets/R.jpg' },
-    { name: 'Sow Laboring', imgUrl: 'assets/R.jpg' }
-  ];
-
+  pigStages:any=[];
+  
   ngOnInit(): void {
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe((result) => {
       this.isMobile = result.matches;
     });
+    this.loadProducts();
   }
   
+    getImagePath(imgUrl: string): string {
+      const baseUrl = 'http://localhost:5274/api/Images/'; // Adjust this to your API base URL
+      return baseUrl + imgUrl;
+   }
+  
+  
+  async loadProducts(): Promise<void> {
+    try {
+      this.isLoading = true;
+      this.pigStages = await firstValueFrom(this.products.getEmployees());
+      console.log(this.pigStages)
+
+      this.pigStages.data = this.pigStages;
+      this.isLoading = false;
+  
+    } catch (error) {
+      console.error('Error fetching employee data:', error);
+      this.isLoading = false;
+    }
+  }
+ 
+  
+
   applyFilter(){
    // this.employee.filter = this.searchKey.trim().toLocaleLowerCase();
   }
@@ -52,11 +71,12 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ViewDetails(): void {
+  ViewDetails(stage:any): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '900px';
+    dialogConfig.data = stage;
     const dialogRef = this.dialog.open(ProductDetailsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -67,8 +87,6 @@ export class HomeComponent implements OnInit {
   ViewOrder():void{
     this.router.navigate(['header/home/view-order']); 
   }
-  loadProducts() {
-    throw new Error('Method not implemented.');
-  }
+ 
 
 }

@@ -3,6 +3,7 @@
   </button>
 <h2>Upload Product</h2>
 <form [formGroup]="EmployeeForm" (ngSubmit)="onSubmit()" style="overflow: auto;" >
+
   <mat-form-field appearance="standard">
     <mat-label>Product ID</mat-label>
     <input matInput placeholder="Input Product ID" formControlName="empID" required />
@@ -25,10 +26,10 @@
 
   <!-- Product Image Upload -->
   <div class="upload-section">
-      <input type="file" (change)="onUploadPhoto($event)" accept="image/*" />
+      <input type="file" (change)="onFileChange($event)" accept="image/*" />
   </div>
 
-  <!-- Optional: Image Preview -->
+  <!-- Optional: Image Preview-->
   <div *ngIf="previewUrl" class="image-preview">
     <img [src]="previewUrl" alt="Image Preview" style="max-width: 50%; height: 100px;" *ngIf="previewUrl; else placeholder"  />
     <ng-template #placeholder>
@@ -37,6 +38,6 @@
   </div>
 
   <div class="button-container">
-    <button type="submit" mat-raised-button color="primary" [disabled]="EmployeeForm.invalid">Submit</button>
+    <button type="submit" mat-raised-button color="primary" [disabled]="EmployeeForm.invalid">Save</button>
   </div>
 </form>

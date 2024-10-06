@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
-import { EmployeesService } from 'src/app/services/employees.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { ProductsUIComponent } from '../../componentsUI/products-ui/products-ui.component';
 import { firstValueFrom } from 'rxjs';
 import { NotificationsService } from 'src/app/Global/notifications.service';
@@ -14,7 +14,7 @@ import { NotificationsService } from 'src/app/Global/notifications.service';
   styleUrls: ['./product-items.component.css']
 })
 export class ProductItemsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'empID', 'empName', 'address', 'contactNo', 'actions'];
+  displayedColumns: string[] = ['id','empID','imagePath','empName', 'address', 'contactNo', 'actions'];
   employee = new MatTableDataSource<any>([]);
   isLoading = true;
   placeHolder       : string = "Search";
@@ -25,14 +25,23 @@ export class ProductItemsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private employeeService: EmployeesService, 
+  constructor(private employeeService: ProductsService, 
     private dialog : MatDialog,
     private notificationsService : NotificationsService
-  ){}
+  ){
+    
+  }
 
   ngOnInit(): void {
     this.loadProducts();
   }
+
+  // Add this method to your existing ProductItemsComponent class
+  getImagePath(imagePath: string): string {
+    const baseUrl = 'http://localhost:5274/api/Images/'; // Adjust this to your API base URL
+    return baseUrl + imagePath; // Construct the full URL
+  }
+
 
   applyFilter(){
     this.employee.filter = this.searchKey.trim().toLocaleLowerCase();
@@ -59,6 +68,8 @@ export class ProductItemsComponent implements OnInit {
     try {
       this.isLoading = true;
       this.employees = await firstValueFrom(this.employeeService.getEmployees());
+      console.log(this.employees)
+
       this.employee.data = this.employees;
       this.employee.paginator = this.paginator;
       this.employee.sort = this.sort;

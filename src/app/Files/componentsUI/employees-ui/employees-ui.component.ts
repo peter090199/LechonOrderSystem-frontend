@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EmployeesService } from 'src/app/services/employees.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { NotificationsService } from 'src/app/Global/notifications.service';
 
 
@@ -26,7 +26,7 @@ export class EmployeesUIComponent implements OnInit {
   constructor(
     private dialog            : MatDialog,
     private dialogRef         : MatDialogRef<EmployeesUIComponent>,
-    private empService: EmployeesService,
+    private empService: ProductsService,
     private notificationService   : NotificationsService,
     @Inject(MAT_DIALOG_DATA) public data: any, // passing data here from update
   ) { }

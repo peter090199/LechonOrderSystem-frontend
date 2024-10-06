@@ -1,6 +1,6 @@
 
 .gap{
- margin-bottom: 20px;
+ margin-bottom: 30px;
 }
 .search-div
 {
@@ -10,6 +10,71 @@
     flex-wrap: wrap;
 
 }
+
+/* General Styling for the Product Card */
+.product-card {
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin-top:10px;
+  margin-bottom: 50px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  background-color: #fff; /* Clean white background */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: auto;
+}
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+.mat-card-content {
+  margin: 0px; /* Space around the product name */
+  text-align: center; /* Center align product name */
+}
+
+.mat-card-image {
+  border-radius: 12px 12px 0 0; /* Rounded corners at the top */
+  width: 100%;
+  max-height: 170px;
+  object-fit: cover; /* Maintain aspect ratio and cover the card */
+}
+
+/* Text styling for the product name */
+.product-card h1 {
+  font-size: 1.2rem; /* Slightly smaller than normal */
+  font-weight: 500;
+  color: #333; /* Dark text for contrast */
+  margin: 0;
+  padding: 0;
+}
+
+/* Button styling */
+.mat-card-actions {
+  padding: 0;
+  text-align: center; /* Center the button */
+}
+
+.mat-raised-button:hover {
+  background-color: #e64a19; /* Slightly darker orange on hover */
+}
+
+/* Responsive grid adjustment */
+@media (max-width: 768px) {
+  .product-card {
+    margin: 5px;
+  }
+  .product-card:hover {
+   
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+  }
+  .mat-card-image {
+    height: 150px; /* Slightly smaller image for smaller screens */
+  }
+
+  .product-card h1 {
+    font-size: 1rem; /* Adjust text size for smaller screens */
+  }
+}
+
+
 mat-form-field{
   width: 50%;
 }
@@ -30,11 +95,7 @@ button.mat-raised-button {
   width: 120px;
 }
 
-mat-card{
-   width: 100%;
-   margin-top: 0px;
-   margin-bottom: 30px;
-}
+
   /* Mobile view grid */
   .mobile-grid {
     display: flex;

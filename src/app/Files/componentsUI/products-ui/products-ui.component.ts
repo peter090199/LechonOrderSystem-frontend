@@ -17,7 +17,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EmployeesService } from 'src/app/services/employees.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { NotificationsService } from 'src/app/Global/notifications.service';
 
 
@@ -45,20 +45,22 @@ export class ProductsUIComponent implements OnInit {
   constructor(
     private dialog            : MatDialog,
     private dialogRef         : MatDialogRef<ProductsUIComponent>,
-    private empService: EmployeesService,
+    private empService: ProductsService,
     private notificationService   : NotificationsService,
     @Inject(MAT_DIALOG_DATA) public data: any, // passing data here from update
   ) { }
 
   ngOnInit(): void {
-    if (this.data) {
-      if(this.data.id){
+    if (this.data)
+   {
+     if(this.data.id){
         this.btnSave = "Update";
         this.EmployeeForm.controls['empID'].disable();
         this.GetItemFormData();
       }
   
-    }else{
+    }
+    else{
       this.onCheck(true);
     }
    
@@ -72,30 +74,46 @@ export class ProductsUIComponent implements OnInit {
     this.EmployeeForm.controls['address'].setValue(this.data.address);
     this.EmployeeForm.controls['contactNo'].setValue(this.data.contactNo);
   }
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    this.EmployeeForm.patchValue({
-        image: file
-    });
-}
 
 
-  onSubmit() {
+  onSubmit():void {
     this.loading = true;
-    const employeeData = this.EmployeeForm.getRawValue();
-   if (this.EmployeeForm.valid) {
-
-    if (this.btnSave == "Save")
-       {
-        const formData = new FormData();
-        Object.keys(this.EmployeeForm.controls).forEach(key => {
-            formData.append(key, this.EmployeeForm.get(key)?.value);
-        });
-        console.log(formData)
-        this.empService.postEmployee(employeeData).subscribe({
-          next: (res) => {
-            this.notificationService.popupSwalMixin("Successfully Saved.");
-            this.ResetForm();
+   //  const employeeData = this.EmployeeForm.getRawValue();
+   if (this.EmployeeForm.valid && this.selectedFile) {
+      const employeeData = new FormData(); // Use FormData for file and form data
+      employeeData.append('id', this.EmployeeForm.get('id')?.value);
+      employeeData.append('empID', this.EmployeeForm.get('empID')?.value);
+      employeeData.append('empName', this.EmployeeForm.get('empName')?.value);
+      employeeData.append('address', this.EmployeeForm.get('address')?.value);
+      employeeData.append('contactNo', this.EmployeeForm.get('contactNo')?.value);
+      employeeData.append('image', this.selectedFile);
+  
+      // Append file if selected
+      if (this.selectedFile) {
+        employeeData.append('Image', this.selectedFile);
+      }
+    
+      if (this.btnSave == "Save")
+        {
+          console.log(employeeData)
+          this.empService.postEmployee(employeeData).subscribe({
+            next: (res) => {
+              this.notificationService.popupSwalMixin("Successfully Saved.");
+              this.ResetForm();
+              this.loading = false;
+            },
+            error: (err) => {
+              this.notificationService.toastrError(err.error);
+              this.loading = false;
+            },
+          });
+      } 
+       if (this.btnSave == 'Update') 
+        {
+        this.empService.updateEmployee(employeeData,this.data.id).subscribe({
+          next: () => {
+            this.notificationService.popupSwalMixin("Successfully Updated.");
+            this.dialogRef.close(true); 
             this.loading = false;
           },
           error: (err) => {
@@ -103,26 +121,34 @@ export class ProductsUIComponent implements OnInit {
             this.loading = false;
           },
         });
-    } 
-    else if (this.btnSave == 'Update') 
-      {
-      this.empService.updateEmployee(employeeData,this.data.id).subscribe({
-        next: () => {
-          this.notificationService.popupSwalMixin("Successfully Updated.");
-          this.dialogRef.close(true); 
-          this.loading = false;
-        },
-        error: (err) => {
-          this.notificationService.toastrError(err.error);
-          this.loading = false;
-        },
-      });
+      }
     }
   }
+
+  // Handle file input change
+  onFileChange22(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
   }
   
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+
+      // Preview the selected image
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   // Handle file selection
-  onFileSelected(event: Event): void {
+  onUploadPhoto(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.selectedFile = file;
@@ -136,19 +162,6 @@ export class ProductsUIComponent implements OnInit {
     }
   }
   
-  onUploadPhoto(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
-
-      
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.previewUrl = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
 
 
   onCheck(data: any) {
@@ -167,6 +180,9 @@ export class ProductsUIComponent implements OnInit {
     this.EmployeeForm.controls['empName'].setValue('');
     this.EmployeeForm.controls['address'].setValue('');
     this.EmployeeForm.controls['contactNo'].setValue('');
+    // this.EmployeeForm.reset();
+    this.previewUrl = null; // Reset image preview
+    this.selectedFile = null; // Reset selected file
   }
 
 }

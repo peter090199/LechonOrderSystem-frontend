@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EmployeesService } from 'src/app/services/employees.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { Employees } from 'src/app/Model/Employees';
 import { NotificationsService } from 'src/app/Global/notifications.service';
 
@@ -21,7 +21,7 @@ export class EditEmployeeComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<EditEmployeeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, // Injected data
-    private employeeService: EmployeesService,
+    private employeeService: ProductsService,
     private notificationsService: NotificationsService
   ) {}
 
