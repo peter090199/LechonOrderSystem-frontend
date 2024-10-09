@@ -4,7 +4,7 @@
   
   .sidenav {
     width: 170px;
-    background-color: #c2c2c99f;
+    background-color: #f0eaefb7;
   }
   
   .spacer {
@@ -28,6 +28,7 @@
   @media (max-width: 768px) {
     .sidenav {
       width: 100%;
+      
     }
     
       /* Links */

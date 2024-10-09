@@ -9,18 +9,18 @@
        
         <div class="left-content">
           <!-- Product Image -->
-          <img [src]="getImagePath(product?.imagePath)"  class="product-image">
+          <img [src]="getImagePath(product.imagePath)"  class="product-image">
         </div>
   
           <!-- Product Details -->
           <div class="product-details">
-            <h3 class="product-title">{{ product?.empName }}</h3>
-            <p class="product-variations">{{ product?.address}}</p>
+            <h3 class="product-title">{{ product.productName }}</h3>
+            <p class="product-variations">{{ product.category}}</p>
           </div>
             <!-- Price Details -->
             <div class="product-pricing">
-              <span class="product-price">₱{{product?.contactNo}}</span>
-              <span class="product-price">₱{{totalPrice | number: '1.2-2' }}</span>
+              <span class="product-price">₱{{product.price | number:'1.2-2'}}</span>
+              <span class="product-price">₱{{totalAmount | number: '1.2-2' }}</span>
             </div>
           <!-- Quantity Selector -->
           <div class="quantity-section">
@@ -40,7 +40,7 @@
             <button  mat-raised-button class="button-Order" (click)="AddToCart()">Order Item
                 <span class="material-symbols-outlined">
                     add_shopping_cart
-                    </span>
+                 </span>
             </button>
           </div>
         

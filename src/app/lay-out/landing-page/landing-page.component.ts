@@ -60,7 +60,6 @@ export class LandingPageComponent implements OnInit {
     this.isMobile = window.innerWidth <= 768;
     
     this.username = this.logoutService.getUsername();
-   // console.log('Username:', this.username);
     if (this.username) {
       this.loadUserAndModules();
     } else {

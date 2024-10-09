@@ -24,18 +24,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    const userName = this.registerForm.controls['UserName'].value; // Get username from form
-
-    // this.registerService.getUsers().subscribe((usersList: any[]) => {
-    //   const user = usersList.find(user => user.userName === userName); // Compare with userName from the form
-
-    //   if (user) {
-    //     this.notificationService.toastrWarning("User Already exists!");
-    //     return;
-    //   } 
-    //   else 
-    //   {
-        
         if (this.registerForm.valid) {
           this.registerService.register(this.registerForm.getRawValue()).subscribe({
             next: (res) => {
@@ -48,8 +36,6 @@ export class RegisterComponent implements OnInit {
           });
         }
       }
-   // });
-  //}
 
   Reset() {
     this.registerForm.controls['UserName'].setValue('');

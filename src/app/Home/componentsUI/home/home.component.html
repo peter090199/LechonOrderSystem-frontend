@@ -23,12 +23,12 @@
     <mat-grid-list cols="4" gutterSize="10px" rowHeight="1:1" class="gap"  *ngIf="!isMobile">
       <mat-grid-tile *ngFor="let stage of pigStages">
         <mat-card class="product-card">
-          <img mat-card-image [src]="getImagePath(stage.imagePath)" alt="{{stage.empName}}">
+          <img mat-card-image [src]="getImagePath(stage.imagePath)">
           <mat-card-content>
-            <h1 class="text-center">{{ stage.empName }}</h1>
+            <h1 class="text-center">{{ stage.productName }}</h1>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="accent" class="w-100" (click)="ViewDetails(stage.empName)">View details</button>
+            <button mat-raised-button color="accent" class="w-100" (click)="ViewDetails(stage.productName)">View details</button>
           </mat-card-actions>
         </mat-card>
       </mat-grid-tile>
@@ -37,12 +37,12 @@
     <!-- Mobile Layout -->
     <div class="d-block d-sm-none">
       <mat-card *ngFor="let stage of pigStages" class="h-100">
-        <img mat-card-image [src]="getImagePath(stage.imagePath)" alt="{{stage.empName}}">
+        <img mat-card-image [src]="getImagePath(stage.imagePath)" alt="{{stage.productName}}">
         <mat-card-content>
-          <h3 class="text-center">{{ stage.empName }}</h3>
+          <h3 class="text-center">{{ stage.productName }}</h3>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="accent" class="w-100" (click)="ViewDetails(stage.empName)">View Details</button>
+          <button mat-raised-button color="accent" class="w-100" (click)="ViewDetails(stage.productName)">View Details</button>
         </mat-card-actions>
       </mat-card>
     </div>

@@ -182,18 +182,14 @@
   
     .actions {
       margin-top: 2px;
-      width: 100%;
     
     }
   
     .actions button {
-      margin: 10px;
-      width: 40%;
-      
+      margin: 0px;
+      width: 100%;
     }
-    .button-Order {
-        width: 100%; /* Reset to auto on larger screens */
-    }
+  
     .close-button {
         position: absolute;
         top: 8px;

@@ -1,13 +1,18 @@
   
   <mat-sidenav-container class="example-container"  data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
     <mat-sidenav #sidenav  [opened]="isMobile$ | async">
+       <div class="close-icon" *ngIf="isMobile$">
+        <button mat-icon-button (click)="sidenav.close()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
       <span class="example-spacer"></span>
      
       <mat-nav-list class="sidebar">
        
-        <a mat-list-item class="nav-link" [routerLink]="['/userPage']" (click)="onNavItemClick(sidenav)" href="#home">Home</a>
-        <a mat-list-item class="nav-link" [routerLink]="['/login']" (click)="onNavItemClick(sidenav)" href="#home">Sign In</a>
-        <a mat-list-item class="nav-link" [routerLink]="['/register']" (click)="onNavItemClick(sidenav)" href="#about">Sign Out</a>
+        <a mat-list-item class="nav-link" [routerLink]="['/userPage']" (click)="onNavItemClick(sidenav)">Home</a>
+        <a mat-list-item class="nav-link" [routerLink]="['/login']" (click)="onNavItemClick(sidenav)">Sign In</a>
+        <a mat-list-item class="nav-link" [routerLink]="['/register']" (click)="onNavItemClick(sidenav)" >Sign Out</a>
       </mat-nav-list>
     </mat-sidenav>
     
@@ -15,12 +20,6 @@
       <mat-toolbar>
         <nav class="navbar navbar-expand-sm custom-toolbar navbar-dark fixed-top">
           <div class="container-fluid">
-          
-            <!-- <button mat-icon-button class="toggle-button" (click)="sidenav.toggle()">
-                <mat-icon class="menu-icon" *ngIf="!(sidenav.opened)">menu</mat-icon>
-                <mat-icon class="close-icon" *ngIf="sidenav.opened">close</mat-icon>
-                </button> -->
-
                 <button
                     class="toggle-button"
                     type="button"
@@ -44,7 +43,7 @@
             </div>
         </nav>
       </mat-toolbar>
-      <router-outlet></router-outlet>
+      <!-- <router-outlet></router-outlet> -->
      
     </mat-sidenav-content>
   </mat-sidenav-container>

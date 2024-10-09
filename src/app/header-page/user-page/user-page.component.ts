@@ -69,6 +69,6 @@ export class UserPageComponent implements OnInit {
     // Simulate loading with a timeout (replace this with actual data fetching)
     setTimeout(() => {
       this.isLoading = false; // Set loading to false after data is fetched
-    }, 3000); // Adjust time as necessary
+    }, 1000); // Adjust time as necessary
   }
 }

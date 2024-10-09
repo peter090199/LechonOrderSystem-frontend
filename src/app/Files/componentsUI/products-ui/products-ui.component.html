@@ -2,26 +2,26 @@
     <mat-icon class="close-icon" color="warn">close</mat-icon>
   </button>
 <h2>Upload Product</h2>
-<form [formGroup]="EmployeeForm" (ngSubmit)="onSubmit()" style="overflow: auto;" >
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" style="overflow: auto;" >
 
   <mat-form-field appearance="standard">
     <mat-label>Product ID</mat-label>
-    <input matInput placeholder="Input Product ID" formControlName="empID" required />
+    <input matInput placeholder="Input Product ID" formControlName="productId" required />
   </mat-form-field>
 
   <mat-form-field appearance="standard">
     <mat-label>Product Name</mat-label>
-    <input matInput placeholder="Input Product Name" formControlName="empName" required />
+    <input matInput placeholder="Input Product Name" formControlName="productName" required />
   </mat-form-field>
 
   <mat-form-field appearance="standard">
     <mat-label>Category</mat-label>
-    <input matInput placeholder="Input Category" formControlName="address" required />
+    <input matInput placeholder="Input Category" formControlName="category" required />
   </mat-form-field>
 
   <mat-form-field appearance="standard">
     <mat-label>Price</mat-label>
-    <input matInput placeholder="Input Price" formControlName="contactNo" required />
+    <input matInput placeholder="Input Price" formControlName="price" required />
   </mat-form-field>
 
   <!-- Product Image Upload -->
@@ -38,6 +38,6 @@
   </div>
 
   <div class="button-container">
-    <button type="submit" mat-raised-button color="primary" [disabled]="EmployeeForm.invalid">Save</button>
+    <button type="submit" mat-raised-button color="primary" [disabled]="productForm.invalid">Save</button>
   </div>
 </form>

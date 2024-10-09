@@ -14,12 +14,12 @@ import { NotificationsService } from 'src/app/Global/notifications.service';
   styleUrls: ['./product-items.component.css']
 })
 export class ProductItemsComponent implements OnInit {
-  displayedColumns: string[] = ['id','empID','imagePath','empName', 'address', 'contactNo', 'actions'];
-  employee = new MatTableDataSource<any>([]);
+  displayedColumns: string[] = ['id','productId','imagePath','productName','category', 'price', 'actions'];
+  products = new MatTableDataSource<any>([]);
   isLoading = true;
   placeHolder       : string = "Search";
   searchKey         : string = "";
-  employees         : any=[];
+  data         : any=[];
   pageSizeOptions   : number[] = [5, 10, 25, 100];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -44,7 +44,7 @@ export class ProductItemsComponent implements OnInit {
 
 
   applyFilter(){
-    this.employee.filter = this.searchKey.trim().toLocaleLowerCase();
+    this.products.filter = this.searchKey.trim().toLocaleLowerCase();
   }
   clearSearch(){
     this.searchKey = "";
@@ -67,12 +67,12 @@ export class ProductItemsComponent implements OnInit {
   async loadProducts(): Promise<void> {
     try {
       this.isLoading = true;
-      this.employees = await firstValueFrom(this.employeeService.getEmployees());
-      console.log(this.employees)
+      this.data = await firstValueFrom(this.employeeService.getEmployees());
+     // console.log(this.data)
 
-      this.employee.data = this.employees;
-      this.employee.paginator = this.paginator;
-      this.employee.sort = this.sort;
+      this.products.data = this.data;
+      this.products.paginator = this.paginator;
+      this.products.sort = this.sort;
       this.isLoading = false;
   
     } catch (error) {
@@ -81,21 +81,21 @@ export class ProductItemsComponent implements OnInit {
     }
   }
  
-  deleteEmployee(employee:any){
-    if(!employee){
+  deleteEmployee(products:any){
+    if(!products){
       this.notificationsService.toastrWarning('No record selected!');
       
     }
     else{
-      this.notificationsService.popupWarning(employee.empName," "+"Are you sure to delete this product?").then((result) => {
+      this.notificationsService.popupWarning(products.productName," "+"Are you sure to delete this product?").then((result) => {
         if (result.value) {
-          this.employeeService.deleteEmployee(employee.empID).subscribe({
+          this.employeeService.deleteEmployee(products.productId).subscribe({
               next:()=>{
-                this.notificationsService.popupSwalMixin("Successfuly deleted "+ employee.empName);
+                this.notificationsService.popupSwalMixin("Successfuly deleted "+ products.productName);
                 this.loadProducts();
               },
               error:()=>{
-                this.notificationsService.toastrError("no employee id");
+                this.notificationsService.toastrError("no product id");
                 this.loadProducts();
               },
           });

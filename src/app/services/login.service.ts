@@ -40,8 +40,8 @@ userroles()
 {
   this.user = this.users.getUsers().subscribe({next:(res)=>{
     this.user = res;
-    console.log(this.user); 
-    console.log(this.userName); 
+    //console.log(this.user); 
+   /// console.log(this.userName); 
   },
   error:(err)=>{
     console.error("Error user role:",err);
@@ -57,6 +57,7 @@ userroles()
           this.saveToken(res.token);
           this.userName = UserName; // Assume the email is returned in the response
           localStorage.setItem('UserName', this.userName);
+          localStorage.setItem('UserId', this.userName);
         //  const user = { UserName, role: 'user' }; 
         
        //   if(this.userName == "")

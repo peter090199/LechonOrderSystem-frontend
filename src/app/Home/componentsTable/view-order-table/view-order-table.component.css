@@ -26,6 +26,10 @@
   .mat-spinner {
     margin-bottom: 10px; /* Space between spinner and text */
   }
+  .loading-container mat-spinner {
+    width: 10px; /* Adjust the width */
+    height: 20px; /* Adjust the height */
+  }
   
   /* Responsive text styling */
   .loading-container p {

@@ -68,13 +68,6 @@ export class ProductsService {
         );
     }
 
-    // getproductsByImageName(empName: string): Observable<void> {
-    //   const url = `${_url}Products/GetProductByImageName/${empName}`; // Correct URL construction
-    //   return this.http.put<void>(url, this.httpOptions) // Pass EmployeeForm as the body
-    //     .pipe(
-    //       catchError(this.handleError<void>('getproductsByImageName'))
-    //     );
-    // }
 
     getproductsByImageName(data: any): Observable<any> {
       const url = `${_url}Products/GetProductByImageName/${data}`;
