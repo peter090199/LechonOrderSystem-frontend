@@ -1,6 +1,5 @@
-  <div class="container-fixed">
-    <!-- Desktop & Tablet Grid Layout -->
-    <div class="search-div">
+     <!-- Desktop & Tablet Grid Layout -->
+     <div class="search-div">
       <mat-form-field  floatLabel="never" appearance="standard">
         <input matInput [(ngModel)]="searchKey" [placeholder]="placeHolder" (keyup)="applyFilter()" autocomplete="false">
         <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
@@ -19,6 +18,9 @@
         
         </button>
     </div>
+    
+  <div class="container-fixed">
+ 
     
     <mat-grid-list cols="4" gutterSize="10px" rowHeight="1:1" class="gap"  *ngIf="!isMobile">
       <mat-grid-tile *ngFor="let stage of pigStages">

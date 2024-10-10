@@ -32,7 +32,10 @@ export class ProductOrderService {
     const url = `${_url}ProductsOrder/GetCountsOrderById/${userId}`; 
     return this.http.get<any>(url);  
   }
-
+  DeleteProductOrder(orderId: number): Observable<void> {
+    return this.http.delete<void>(`${_url}ProductsOrder/${orderId}`);
+  }
+  
 
 
 }

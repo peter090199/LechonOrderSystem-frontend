@@ -22,7 +22,7 @@ export class ViewOrderTableComponent implements OnInit {
   isLoading = true;
   countOrder:any;
 
-  displayedColumns: string[] = ['productName', 'quantity', 'price', 'totalAmount','actions'];
+  displayedColumns: string[] = ['productName','imagePath','quantity', 'price', 'totalAmount','actions'];
   data: any=[];
   userId: number = 0;
   placeHolder       : string = "Search";
@@ -52,6 +52,11 @@ loadUserOrders(userId:number): void {
     }
   });
 }
+  // Add this method to your existing ProductItemsComponent class
+  getImagePath(imagePath: string): string {
+    const baseUrl = 'http://localhost:5274/api/Images/'; // Adjust this to your API base URL
+    return baseUrl + imagePath; // Construct the full URL
+  }
 
 async loadUserId(): Promise<void> {
   try {
@@ -71,11 +76,32 @@ async loadUserId(): Promise<void> {
   editEmployee(_t85: any) {
     throw new Error('Method not implemented.');
     }
-    deleteEmployee(_t85: any) {
-    throw new Error('Method not implemented.');
+
+     
+  deleteEmployee(products:any){
+    if(!products){
+      this.alert.toastrWarning('No record selected!');
+      
     }
+    else{
+      this.alert.popupWarning(products.productName," "+"Are you sure to delete this product?").then((result) => {
+        if (result.value) {
+          this.orderService.DeleteProductOrder(products.orderId).subscribe({
+              next:()=>{
+                this.alert.popupSwalMixin("Successfuly deleted "+ products.productName);
+                this.loadUserId();
+              },
+              error:()=>{
+                this.alert.toastrError("no product id");
+                this.loadUserId();
+              },
+          });
+        }
+      });
+    }
+  }
     
-  onBack() {
+  onBack():void {
     this.router.navigate(['header/menus/menu']); 
     }
  

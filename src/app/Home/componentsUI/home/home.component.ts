@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   isMobile : boolean = false;
   placeHolder       : string = "Search";
-  searchKey         : string = "madmin";
+  searchKey         : string = "";
   isLoading: boolean = true;
   userName:any;
   userId: number = 0;
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     private countOrder:ProductOrderService,
     private users:RegisterService
   ) {
-     this.loadUserId();
+    
 
    }
   
@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
   pigStages:any=[];
  
   ngOnInit(): void {
+    this.loadUserId();
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe((result) => {
       this.isMobile = result.matches;
     });

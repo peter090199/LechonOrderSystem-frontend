@@ -38,9 +38,12 @@ export class ProductDetailsComponent implements OnInit {
     private http: HttpClient,
     private productOrderService:ProductOrderService,
     private users:RegisterService,
-  ) {}
+  ) {
+    
+  }
   
   ngOnInit(): void {
+    this.LoadCounts();
     this.loadUserId();
     this.updateProduct(this.data);
   }
@@ -120,6 +123,8 @@ async loadUserId(): Promise<void> {
             this.alert.toastrInfo(message);
             this.dialogRef.close();
             this.LoadCounts();
+
+           
 
         },
         error:(err) =>{

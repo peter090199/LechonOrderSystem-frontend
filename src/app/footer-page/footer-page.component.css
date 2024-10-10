@@ -1,11 +1,11 @@
-
+/* 
 .footer {
     background-color:white;
     padding: 10px;
     text-align: left;
     border-top: 1px solid #e6d2d2;
-    margin-top: 0px;
-   
+    margin-top: 30px;
+    overflow: auto;
   }
   
   .footer-content {
@@ -20,5 +20,78 @@
   
   .footer-spacer {
     flex: 2;
+  }
+   */
+   .footer-spacer {
+    flex: 1;
+  }
+   .checkout-footer {
+    background-color:white;
+    padding: 10px;
+    text-align: left;
+    border-top: 1px solid #e6d2d2;
+    margin-top: 30px;
+    overflow: auto;
+    align-items: center;
+    z-index: 1000;
+    border-top: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  span {
+    font-size: 0.9rem;
+    color: #888;
+    margin-right: 20px;
+  }
+  .footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .total-price {
+    font-size:12px;
+    color: #ff5722; /* Use your brand color */
+    display: flex;
+    justify-content: flex-end; /* Align to the start (left) */
+    margin-left: 50%; /* A bit of left margin */
+  }
+  
+  .product-price {
+    margin: 0; /* Remove default margins */
+    font-size: 26px; /* Set a larger font size for the price */
+    color: #1f1f1f; /* Match the color for the price */
+  }
+  
+  /* @media (max-width: 768px) {
+    .total-price {
+      font-size: 16px; /* Slightly reduce the size on smaller screens */
+   
+  
+    /* .product-price {
+      font-size: 16px;
+    } */
+  @media (max-width: 768px) {
+    .product-price {
+      font-size: 1.5rem; /* Smaller font size for mobile */
+    }
+    checkout-footer{
+      width: 100%;
+    }
+    .checkout-btn {
+      font-size: 1.2rem; /* Adjust button size for mobile */
+    }
+  
+    .checkout-footer {
+      padding: 10px 15px; /* Reduce padding for smaller devices */
+    }
+  }
+  
+
+  .checkout-btn {
+    font-size:16px;
+    padding: 8px 30px;
+    background-color: #ff5722; /* Change this to match your brand color */
+    color: white;
   }
   

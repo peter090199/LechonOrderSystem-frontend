@@ -10,16 +10,28 @@
         <mat-icon>arrow_back</mat-icon> Back
       </button>
     </div>
-    
+
     <div class="container-fixed">
    
-      <mat-table [dataSource]="orderList" class="mat-elevation-z4" matSort
+      <mat-table [dataSource]="orderList" class="mat-elevation-z8" matSort
        *ngIf="!isLoading; else loading">
         <ng-container matColumnDef="productName">
           <mat-header-cell *matHeaderCellDef mat-sort-header >Product Name</mat-header-cell>
           <mat-cell *matCellDef="let orderList">{{ orderList.productName }}</mat-cell>
         </ng-container>
-  
+       
+        <ng-container matColumnDef="imagePath">
+          <mat-header-cell *matHeaderCellDef>Product Image</mat-header-cell>
+          <mat-cell *matCellDef="let orderList">
+              <img 
+                  [src]="getImagePath(orderList.imagePath)" 
+                  alt="{{ orderList.imagePath}}" 
+                  class="product-image" 
+              />
+              <span *ngIf="!orderList.imagePath">No Image Available</span> <!-- Fallback text -->
+          </mat-cell>
+      </ng-container>
+
         <ng-container matColumnDef="quantity" >
           <mat-header-cell *matHeaderCellDef mat-sort-header >Quantity</mat-header-cell>
           <mat-cell *matCellDef="let orderList">{{ orderList.quantity }}</mat-cell>
@@ -68,4 +80,5 @@
         </ng-template>
     </div>
   </section>
+  <app-footer-page></app-footer-page>
   

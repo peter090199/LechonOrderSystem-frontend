@@ -1,14 +1,11 @@
 
-.gap{
- margin-bottom: 30px;
-}
 .search-div
 {
     display: flex;
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
-
+    padding: 12px;
 }
 
 /* General Styling for the Product Card */
@@ -60,9 +57,18 @@
 @media (max-width: 768px) {
   .product-card {
     margin: 5px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin-top:10px;
+    margin-bottom: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    background-color: #fff; /* Clean white background */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: auto;
   }
-  .product-card:hover {
    
+
+  .product-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
   }
   .mat-card-image {
@@ -75,9 +81,7 @@
 }
 
 
-mat-form-field{
-  width: 50%;
-}
+
 .container {
     width: 100%;
     margin: 0px;
@@ -148,7 +152,7 @@ button.mat-raised-button {
       width: 114px;
     }
     mat-form-field{
-      width: 80%;
+      width: 100%;
     }
     .border-box {
       display: inline-block;
@@ -160,7 +164,7 @@ button.mat-raised-button {
 
     mat-card{
       width: 100%;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
     .mobile-card {
       width: 90%;
