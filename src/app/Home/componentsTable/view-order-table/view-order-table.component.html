@@ -1,4 +1,4 @@
-  <section class="section">
+  <section class="content-scrollable">
     <div class="search-div">
       <mat-form-field class="w-40" floatLabel="never" appearance="standard">
         <input matInput [(ngModel)]="searchKey" [placeholder]="placeHolder" (keyup)="applyFilter()" autocomplete="false">
@@ -12,73 +12,85 @@
     </div>
 
     <div class="container-fixed">
-   
-      <mat-table [dataSource]="orderList" class="mat-elevation-z8" matSort
-       *ngIf="!isLoading; else loading">
-        <ng-container matColumnDef="productName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header >Product Name</mat-header-cell>
-          <mat-cell *matCellDef="let orderList">{{ orderList.productName }}</mat-cell>
-        </ng-container>
-       
-        <ng-container matColumnDef="imagePath">
-          <mat-header-cell *matHeaderCellDef>Product Image</mat-header-cell>
-          <mat-cell *matCellDef="let orderList">
-              <img 
-                  [src]="getImagePath(orderList.imagePath)" 
-                  alt="{{ orderList.imagePath}}" 
-                  class="product-image" 
-              />
-              <span *ngIf="!orderList.imagePath">No Image Available</span> <!-- Fallback text -->
-          </mat-cell>
-      </ng-container>
+        <div class="content-scrollable">
+            <mat-table [dataSource]="orderList" class="mat-elevation-z4" matSort
+            *ngIf="!isLoading; else loading">
+              <ng-container matColumnDef="productName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header >Product Name</mat-header-cell>
+                <mat-cell *matCellDef="let orderList">{{ orderList.productName }}</mat-cell>
+              </ng-container>
+            
+              <ng-container matColumnDef="imagePath">
+                <mat-header-cell *matHeaderCellDef>Product Image</mat-header-cell>
+                <mat-cell *matCellDef="let orderList">
+                    <img 
+                        [src]="getImagePath(orderList.imagePath)" 
+                        alt="{{ orderList.imagePath}}" 
+                        class="product-image" 
+                    />
+                    <span *ngIf="!orderList.imagePath">No Image Available</span> <!-- Fallback text -->
+                </mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="quantity" >
-          <mat-header-cell *matHeaderCellDef mat-sort-header >Quantity</mat-header-cell>
-          <mat-cell *matCellDef="let orderList">{{ orderList.quantity }}</mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="price">
-          <mat-header-cell *matHeaderCellDef mat-sort-header >Price</mat-header-cell>
-          <mat-cell *matCellDef="let orderList">{{ orderList.price }}</mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="totalAmount">
-          <mat-header-cell *matHeaderCellDef mat-sort-header >Total Amount</mat-header-cell>
-          <mat-cell *matCellDef="let orderList">{{ orderList.totalAmount }}</mat-cell>
-        </ng-container>
-  
-  
-        <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
-          <mat-cell *matCellDef="let orderList">
-            <!-- <button mat-icon-button color="primary" (click)="editEmployee(orderList)"><mat-icon>edit</mat-icon> </button> -->
-            <button mat-icon-button color="warn" (click)="deleteEmployee(orderList)"><mat-icon>delete</mat-icon> </button>
-          </mat-cell>
-        </ng-container>
-  
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              <ng-container matColumnDef="quantity" >
+                <mat-header-cell *matHeaderCellDef mat-sort-header >Quantity</mat-header-cell>
+                <mat-cell class="text-center" *matCellDef="let orderList">{{ orderList.quantity }}</mat-cell>
+              </ng-container>
+        
+              <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef mat-sort-header >Price</mat-header-cell>
+                <mat-cell *matCellDef="let orderList">{{ orderList.price }}</mat-cell>
+              </ng-container>
+        
+              <ng-container matColumnDef="totalAmount">
+                <mat-header-cell *matHeaderCellDef mat-sort-header >Total Amount</mat-header-cell>
+                <mat-cell *matCellDef="let orderList">{{ orderList.totalAmount }}</mat-cell>
+              </ng-container>
+        
+        
+              <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+                <mat-cell *matCellDef="let orderList">
+                  <!-- <button mat-icon-button color="primary" (click)="editEmployee(orderList)"><mat-icon>edit</mat-icon> </button> -->
+                  <button mat-icon-button color="warn" (click)="deleteEmployee(orderList)"><mat-icon>delete</mat-icon> </button>
+                </mat-cell>
+              </ng-container>
+        
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-        <ng-container matColumnDef="loading">
-          <mat-footer-cell *matFooterCellDef colspan="6">
-              <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
-          </mat-footer-cell>
-    </ng-container>
-         <ng-container matColumnDef="noData">
-              <mat-footer-cell *matFooterCellDef colspan="6">
-                   No data.
-              </mat-footer-cell>
+              <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+                </mat-footer-cell>
           </ng-container>
-          <mat-footer-row *matFooterRowDef="['noData']"  [ngClass]="{'hide': countOrder.length > 0}"></mat-footer-row>
-    
-        </mat-table>
-        <ng-template #loading>
-          <div class="loading-container">
-            <mat-spinner></mat-spinner>
-            <p>Loading...</p>
-          </div>
-        </ng-template>
+              <ng-container matColumnDef="noData">
+                    <mat-footer-cell *matFooterCellDef colspan="6">
+                        No data.
+                    </mat-footer-cell>
+                </ng-container>
+                <mat-footer-row *matFooterRowDef="['noData']"  [ngClass]="{'hide': countOrder.length > 0}"></mat-footer-row>
+          
+              </mat-table>
+              <ng-template #loading>
+                <div class="loading-container">
+                  <mat-spinner></mat-spinner>
+                  <p>Loading...</p>
+                </div>
+              </ng-template>
+         </div>
     </div>
+
+    <!-- Checkout Footer -->
+  <div class="checkout-footer" *ngIf="isViewingOrder">
+    <div class="footer-content">
+      <h3 class="product-price">Total: ₱{{ totalPrice | number: '1.2-2' }}</h3>
+      <button mat-raised-button color="accent" class="checkout-btn" (click)="checkoutOrder()">
+        Checkout
+      </button>
+    </div>
+  </div>
+
   </section>
-  <app-footer-page></app-footer-page>
+
   

@@ -7,6 +7,24 @@
     padding: 8px;
 
 }
+.product-price {
+  display: flex;
+  margin-left: 70%;
+  margin-top:20px;
+  justify-content: space-between;
+  text-align: end;
+  padding: 20px;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Use full width */
+}
+
+.checkout-btn {
+  margin-left: auto; /* Push button to the right */
+}
 /* Loading container styling */
 .loading-container {
     display: flex;
@@ -45,11 +63,50 @@
     object-fit: cover; /* Ensures the image covers the given dimensions */
     border-radius: 7px; /* Optional: adds a rounded corner effect */
   }
+  .container-fixed {
+    flex: 1; /* Allow the container to grow */
+    overflow: hidden; /* Hide overflow for scrollable content */
+  }
+  
+  .content-scrollable {
+    overflow-y: auto; /* Allow vertical scrolling */
+    max-height: calc(100vh - 100px); /* Adjust this value based on your header/footer height */
+   
+  }
+  .checkout-footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f1f1f1; /* Background color */
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   
   /* Media queries for responsiveness */
 @media (max-width: 768px) {
   mat-table{
     width: 100%;
+  }
+  .container-fixed {
+    flex: 1; /* Allow the container to grow */
+    overflow: hidden; /* Hide overflow for scrollable content */
+  }
+  .footer-content{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  
+  .content-scrollable {
+    overflow-y: auto; /* Allow vertical scrolling */
+    max-height: calc(100vh - 100px); /* Adjust this value based on your header/footer height */
+   
   }
   .product-image {
     width: 100px; /* Set the desired width */

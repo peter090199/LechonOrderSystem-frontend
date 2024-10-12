@@ -1,6 +1,8 @@
 
 .example-container {
   flex-direction: column;
+  background-color: transparent;
+  padding: 0px;
 }
 .logo-section {
   display: flex; /* Aligns children (image and text) in a row */
@@ -60,10 +62,10 @@ router-outlet {
 }
 
 .sidebar {
-  width: 50%; /* Width of the sidebar */
+  width: 100%; /* Width of the sidebar */
   height: 100vh; /* Full height of the viewport */
   position: fixed;
-  background-color: rgb(218, 197, 212);
+  background-color: rgb(185, 185, 185);
 
 }
 .sidebar a:hover {
@@ -86,12 +88,8 @@ router-outlet {
   position: relative;
 }
 
-.menu-icon, .close-icon {
-  transition: opacity 0.3s ease;
-}
-
 .close-icon {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   opacity: 0;

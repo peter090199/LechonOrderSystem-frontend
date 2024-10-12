@@ -1,4 +1,7 @@
-     <!-- Desktop & Tablet Grid Layout -->
+   
+
+
+   <!-- Desktop & Tablet Grid Layout -->
      <div class="search-div">
       <mat-form-field  floatLabel="never" appearance="standard">
         <input matInput [(ngModel)]="searchKey" [placeholder]="placeHolder" (keyup)="applyFilter()" autocomplete="false">
@@ -19,15 +22,14 @@
         </button>
     </div>
     
-  <div class="container-fixed">
- 
-    
+  <div class="container-fluid">
     <mat-grid-list cols="4" gutterSize="10px" rowHeight="1:1" class="gap"  *ngIf="!isMobile">
       <mat-grid-tile *ngFor="let stage of pigStages">
         <mat-card class="product-card">
           <img mat-card-image [src]="getImagePath(stage.imagePath)">
           <mat-card-content>
-            <h1 class="text-center">{{ stage.productName }}</h1>
+            <p class="text-center">{{ stage.productName }} - {{stage.category}}</p>
+            <!-- <p class="text-center">{{ stage.category }}</p> -->
           </mat-card-content>
           <mat-card-actions>
             <button mat-raised-button color="accent" class="w-100" (click)="ViewDetails(stage.productName)">View details</button>
@@ -48,6 +50,7 @@
         </mat-card-actions>
       </mat-card>
     </div>
+
   </div>
 
   

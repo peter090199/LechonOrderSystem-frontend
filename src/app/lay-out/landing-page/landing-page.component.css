@@ -5,7 +5,7 @@
   
   .sidenav {
     width: 170px;
-    background-color: #fcfcfc;
+    background-color: #eed5f0;
   }
   
   .spacer {
@@ -41,7 +41,7 @@
     cursor: pointer;
     transition: color 0.3s ease;
     list-style-type: none;
-  
+    
   }
   .toolbar-icon{
    gap: 15px;

@@ -25,7 +25,7 @@ export class LoginService {
     private jwtHelper: JwtHelperService,
     private users:UsersRoleService
   ) {
-    this.startTokenExpirationCheck(); // Start checking for token expiration on initialization
+   // this.startTokenExpirationCheck(); // Start checking for token expiration on initialization
   }
 
   // Check if the user is authenticated and token is valid

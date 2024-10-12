@@ -125,6 +125,7 @@ export class HeaderPageComponent implements OnInit {
           this.accessRights.some((right: any) => right.subModuleId === submodule.subModuleId)
         );
       }
+      
     } catch (error) {
       console.error('Error fetching modules or submodules:', error);
     }

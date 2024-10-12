@@ -1,18 +1,13 @@
-<mat-sidenav-container>
-  <app-user-page></app-user-page>
-</mat-sidenav-container>
-
 <div class="register-container">
-
     <div class="register-form">
       <h1>Register</h1>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="standard">
           <mat-label>Username</mat-label>
           <input matInput formControlName="UserName" required>
         </mat-form-field>
   
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="standard">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="Password" required>
         </mat-form-field>

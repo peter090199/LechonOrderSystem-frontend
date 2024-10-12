@@ -1,5 +1,5 @@
   
-  <mat-sidenav-container class="example-container"  data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
+  <mat-sidenav-container class="example-container" >
     <mat-sidenav #sidenav  [opened]="isMobile$ | async">
        <div class="close-icon" *ngIf="isMobile$">
         <button mat-icon-button (click)="sidenav.close()">
@@ -10,15 +10,15 @@
      
       <mat-nav-list class="sidebar">
        
-        <a mat-list-item class="nav-link" [routerLink]="['/userPage']" (click)="onNavItemClick(sidenav)">Home</a>
-        <a mat-list-item class="nav-link" [routerLink]="['/login']" (click)="onNavItemClick(sidenav)">Sign In</a>
-        <a mat-list-item class="nav-link" [routerLink]="['/register']" (click)="onNavItemClick(sidenav)" >Sign Out</a>
+        <a mat-list-item class="nav-link" [routerLink]="['/menu']" (click)="onNavItemClick(sidenav)">Home</a>
+        <a mat-list-item class="nav-link" [routerLink]="['/login']" (click)="onNavItemClick(sidenav)">Login</a>
+        <a mat-list-item class="nav-link" [routerLink]="['/register']" (click)="onNavItemClick(sidenav)" >Register</a>
       </mat-nav-list>
     </mat-sidenav>
     
     <mat-sidenav-content>
       <mat-toolbar>
-        <nav class="navbar navbar-expand-sm custom-toolbar navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-sm custom-toolbar  fixed-top">
           <div class="container-fluid">
                 <button
                     class="toggle-button"
@@ -36,14 +36,14 @@
 
                 <span class="example-spacer"></span>
                 <div class="example-button-row">
-                  <button  *ngIf="!(isMobile$ | async)"  class="nav-link"  mat-button [routerLink]="['/userPage']">Home</button>
-                  <button  *ngIf="!(isMobile$ | async)"  class="nav-link"  mat-button [routerLink]="['/login']">Sign In</button>
-                  <button  *ngIf="!(isMobile$ | async)" class="nav-link"  mat-button [routerLink]="['/register']">Sign Out</button>
+                  <button  *ngIf="!(isMobile$ | async)"  class="nav-link"  mat-button [routerLink]="['/menu']">Home</button>
+                  <button  *ngIf="!(isMobile$ | async)"  class="nav-link"  mat-button [routerLink]="['/login']">Login</button>
+                  <button  *ngIf="!(isMobile$ | async)" class="nav-link"  mat-button [routerLink]="['/register']">Register</button>
                 </div>
             </div>
         </nav>
       </mat-toolbar>
-      <!-- <router-outlet></router-outlet> -->
+      <router-outlet></router-outlet>
      
     </mat-sidenav-content>
   </mat-sidenav-container>

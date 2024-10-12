@@ -7,7 +7,9 @@ import { firstValueFrom } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { RegisterService } from 'src/app/services/register.service';
-
+import { MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { CheckoutComponent } from '../../componentsUI/check-out-ui/check-out-ui.component';
 
 @Component({
   selector: 'app-view-order-table',
@@ -21,23 +23,36 @@ export class ViewOrderTableComponent implements OnInit {
   orderList = new MatTableDataSource<any>([]);
   isLoading = true;
   countOrder:any;
-
+  isViewingOrder: boolean = true;
   displayedColumns: string[] = ['productName','imagePath','quantity', 'price', 'totalAmount','actions'];
+
   data: any=[];
   userId: number = 0;
   placeHolder       : string = "Search";
   searchKey         : string = "";
   userName:any;
+  totalPrice: number = 0;
 
   constructor(private router:Router,
   private orderService:ProductOrderService,
   private alert:NotificationsService,
   private users:RegisterService,
+  private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    this.ViewOrder();
     this.loadUserId();
 }
+
+ViewOrder(): void {
+  this.totalPrice = 10000.50; // Example total price
+  this.isViewingOrder = true; // Show the footer when viewing order
+}
+
+// checkoutOrder(): void {
+//   console.log('Proceed to checkout with total price:', this.totalPrice);
+// }
 
 loadUserOrders(userId:number): void {
   this.orderService.getOrderByUserId(userId).subscribe({
@@ -114,5 +129,19 @@ async loadUserId(): Promise<void> {
      this.applyFilter();
  
    }
- 
+   checkoutOrder(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '600px';
+  
+    const dialogRef = this.dialog.open(CheckoutComponent, dialogConfig); // Replace SomeComponent with your dialog component
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadUserId(); // Refresh the table after dialog closure
+      }
+    });
+  }
+  
 }

@@ -18,21 +18,39 @@ import { UserMenuPageComponent } from './header-page/user-menu-page/user-menu-pa
 import { HomeComponent } from './Home/componentsUI/home/home.component';
 import { ProductItemsComponent } from './Files/components/product-items/product-items.component';
 import { ViewOrderTableComponent } from './Home/componentsTable/view-order-table/view-order-table.component';
+import { UserHomepageComponent } from './header-page/user-homepage/user-homepage.component';
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/userPage', pathMatch: 'full' },
-  { path: 'userPage', component: UserMenuPageComponent },
-  { path: 'register', component: RegisterComponent }, // Accessible to everyone
-  { path: 'login', component: LoginComponent }, // Accessible to everyone
 
-  // Protected route (accessible to both admin and user roles)
+  // { path: 'userPage', component: UserPageComponent },
+  // { path: 'register', component: RegisterComponent }, // Accessible to everyone
+  // { path: 'login', component: LoginComponent }, // Accessible to everyone
+  //  {path: 'menu', component: HomeComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+
   { 
     path: 'protected', 
     component: ProtectedComponent, 
     canActivate: [AuthGuard], 
     data: { roles: ['admin', 'user'] } 
+  },
+
+  {path:'',
+    component:UserPageComponent,
+    
+    children:[
+      {
+        path: 'menu', component: UserHomepageComponent,
+      },
+      {
+        path: 'login', component: LoginComponent,
+      },
+      {
+        path: 'register', component: RegisterComponent,
+      }
+    ]
   },
 
   // Routes requiring authentication

@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit{
         this.router.navigate(['/header/home']);
       } 
       else {
-        this.router.navigate(['/header']); // Default dashboard
+        this.router.navigate(['/header/menus/menu']); // Default dashboard
       }
       },
       error: (err) => {

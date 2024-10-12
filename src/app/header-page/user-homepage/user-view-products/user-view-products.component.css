@@ -1,0 +1,11 @@
+
+.close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #f44336; /* Red color for delete/close */
+  }
+  .example-card {
+    max-width: 600px;
+  }
+  

@@ -4,12 +4,12 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #fdfdfd;
+    background-color: #f0e8ef;
   }
   
   /* Form styling */
   .login-form {
-    background-color: #ffffff;
+    background-color: #fff5ff57;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -21,8 +21,11 @@
   .login-form h1 {
     margin-bottom: 15px;
     font-size: 22px;
-    color: #333;
+    color: #131313;
     text-align: left;
+  }
+  mat-label{
+    color: rgb(8, 8, 8);
   }
   
   /* Form fields */
@@ -30,6 +33,10 @@
     width: 100%;
     margin-bottom: 1px;
   }
+  .mat-form-field input{
+   font-size: 14px;
+  }
+  
   
   .mat-form-field .mat-form-field-label {
     font-size: 1rem;
@@ -48,12 +55,12 @@
   }
   
   .login-form button:hover {
-    background-color: #155bcb;
+    background-color: #910189;
   }
   
   /* Link styling */
   .login-form a {
-    color: #1877f2;
+    color: #0b0b0c;
     text-decoration: none;
   }
   

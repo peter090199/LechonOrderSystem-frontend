@@ -8,21 +8,20 @@
     padding: 12px;
 }
 .container-fluid{
-  margin-top: 16px;
+  padding: 20px;
 }
 
 /* General Styling for the Product Card */
 .product-card {
   border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 2px 8px rgba(82, 50, 50, 0.1); /* Soft shadow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
   background-color: #fff; /* Clean white background */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: auto;
-  position: static;
-  margin: 20px;
-  padding: 0px;
-  margin-bottom: 70px;
+  margin: 30px;
+  position: relative;
+  margin-bottom: 90px;
 }
 .product-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
@@ -32,10 +31,11 @@
   text-align: center; /* Center align product name */
 }
 
-.mat-card-image {
+mat-card-image {
   border-radius: 12px 12px 0 0; /* Rounded corners at the top */
   width: 100%;
-  max-height: 150px;
+  max-height: 100px;
+  padding: 80px;
   object-fit: cover; /* Maintain aspect ratio and cover the card */
 }
 
@@ -50,12 +50,27 @@
 
 /* Button styling */
 .mat-card-actions {
-  padding: 0px;
+  padding: 10px;
   text-align: center; /* Center the button */
 }
 
 .mat-raised-button:hover {
   background-color: #e64a19; /* Slightly darker orange on hover */
+}
+.content{
+  padding: 0px;
+  width: 100%;
+  margin: 0px;
+  background-color: none;
+  background-origin: unset;
+
+}
+.content p {
+  font-size: 18px; /* Adjusts font size */
+  line-height: 1.6; /* Line height for readability */
+  color: #000000; /* Gray color for the text */
+  font-family: 'Arial', 'Tahoma'; /* Font family */
+  margin: 30px;
 }
 
 /* Responsive grid adjustment */

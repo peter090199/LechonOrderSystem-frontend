@@ -1,21 +1,13 @@
-
-<mat-sidenav-container>
-  <app-user-page></app-user-page>
-  <router-outlet></router-outlet>
-</mat-sidenav-container>
-
 <div class="login-container">
-  
-
     <div class="login-form">
       <h1>Login</h1>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="standard">
           <mat-label>Username</mat-label>
-          <input placeholder="Enter your Username" matInput formControlName="UserName" required>
+          <input  placeholder="Enter your Username" matInput formControlName="UserName" required>
         </mat-form-field>
   
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="standard">
           <mat-label>Password</mat-label>
           <input matInput (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hidePassword"[type]="hidePassword ? 'password' : 'text'" formControlName="Password" placeholder="Enter your password">

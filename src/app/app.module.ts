@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,7 +39,11 @@ import { ProductItemsComponent } from './Files/components/product-items/product-
 import { ProductsUIComponent } from './Files/componentsUI/products-ui/products-ui.component';
 import { ProductDetailsComponent } from './Home/componentsUI/product-details/product-details.component';
 import { DecimalPipe } from '@angular/common';
-import { ViewOrderTableComponent } from './Home/componentsTable/view-order-table/view-order-table.component'; // Import DecimalPipe
+import { ViewOrderTableComponent } from './Home/componentsTable/view-order-table/view-order-table.component';
+import { CheckoutComponent } from './Home/componentsUI/check-out-ui/check-out-ui.component';
+import { UserHomepageComponent } from './header-page/user-homepage/user-homepage.component';
+import { UserViewProductsComponent } from './header-page/user-homepage/user-view-products/user-view-products.component';
+
 
 @NgModule({
   declarations: [
@@ -71,6 +75,9 @@ import { ViewOrderTableComponent } from './Home/componentsTable/view-order-table
     ProductsUIComponent,
     ProductDetailsComponent,
     ViewOrderTableComponent,
+    CheckoutComponent,
+    UserHomepageComponent,
+    UserViewProductsComponent,
   
   ],
   imports: [
@@ -84,7 +91,6 @@ import { ViewOrderTableComponent } from './Home/componentsTable/view-order-table
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule
-
 
     
 

@@ -31,10 +31,7 @@ export class HomeComponent implements OnInit {
     private products:ProductsService,
     private countOrder:ProductOrderService,
     private users:RegisterService
-  ) {
-    
-
-   }
+  ) {}
   
   notificationCount: number | undefined;
   pigStages:any=[];
