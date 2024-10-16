@@ -1,4 +1,29 @@
 
+/* Container to handle form scrolling */
+form {
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh; /* Limit the form height to 70% of the viewport height */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds container height */
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.button-container {
+  position: sticky;
+  bottom: 0;
+  padding-top: 10px;
+  background-color: white;
+  padding-bottom: 10px;
+  z-index: 10;
+  text-align: right;
+}
+
+
+
+
+
+
 .form-actions {
     margin-top: 0px;
     text-align: right;

@@ -14,7 +14,9 @@ import { NotificationsService } from 'src/app/Global/notifications.service';
   styleUrls: ['./product-items.component.css']
 })
 export class ProductItemsComponent implements OnInit {
-  displayedColumns: string[] = ['id','productId','imagePath','productName','category', 'price', 'actions'];
+  displayedColumns: string[] = ['id','productId','imagePath','productName','category', 'price', 
+    'alertQty','quantity','actions'];
+    
   products = new MatTableDataSource<any>([]);
   isLoading = true;
   placeHolder       : string = "Search";

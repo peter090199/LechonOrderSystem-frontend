@@ -9,7 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { RegisterService } from 'src/app/services/register.service';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
-import { CheckoutComponent } from '../../componentsUI/check-out-ui/check-out-ui.component';
+import { CheckOutUIComponent } from '../../componentsUI/check-out-ui/check-out-ui.component';
 
 @Component({
   selector: 'app-view-order-table',
@@ -31,7 +31,8 @@ export class ViewOrderTableComponent implements OnInit {
   placeHolder       : string = "Search";
   searchKey         : string = "";
   userName:any;
-  totalPrice: number = 0;
+
+  totalAmount: number | null = null;
 
   constructor(private router:Router,
   private orderService:ProductOrderService,
@@ -41,19 +42,29 @@ export class ViewOrderTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ViewOrder();
     this.loadUserId();
 }
 
-ViewOrder(): void {
-  this.totalPrice = 10000.50; // Example total price
-  this.isViewingOrder = true; // Show the footer when viewing order
+//get totalamount
+fetchTotalAmount(userId:number): void {
+  this.orderService.GetTotalAmountByUser(userId).subscribe(
+    (amount) => {
+      this.totalAmount  = amount;
+      this.isLoading = false;
+    },
+    (error) => {
+      console.error('Error fetching total amount', error); // Handle error
+    }
+  );
 }
+
 
 // checkoutOrder(): void {
 //   console.log('Proceed to checkout with total price:', this.totalPrice);
 // }
 
+
+//get order by userId
 loadUserOrders(userId:number): void {
   this.orderService.getOrderByUserId(userId).subscribe({
     next: (data) => {
@@ -65,6 +76,7 @@ loadUserOrders(userId:number): void {
       console.error('Error loading user orders:', err);
       this.isLoading = true;
     }
+
   });
 }
   // Add this method to your existing ProductItemsComponent class
@@ -81,6 +93,8 @@ async loadUserId(): Promise<void> {
     const user = await firstValueFrom(this.users.getUserByUsername(this.userName));
     this.userId = user.id; 
     this.loadUserOrders(this.userId);
+    this.fetchTotalAmount(this.userId);
+
     //console.log('User id:', this.userId);
   } catch (error) {
     console.error('Error fetching View Order:', error);
@@ -135,7 +149,7 @@ async loadUserId(): Promise<void> {
     dialogConfig.autoFocus = true;
     dialogConfig.width = '600px';
   
-    const dialogRef = this.dialog.open(CheckoutComponent, dialogConfig); // Replace SomeComponent with your dialog component
+    const dialogRef = this.dialog.open(CheckOutUIComponent, dialogConfig); // Replace SomeComponent with your dialog component
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

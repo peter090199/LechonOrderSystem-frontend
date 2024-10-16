@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { _url } from 'src/global-variables';
 import { Employees } from '../Model/Employees';
+import { url } from 'inspector';
 
 
 @Injectable({
@@ -33,7 +34,7 @@ export class ProductsService {
     return this.http.get<any>(_url+"Products");
   }
     // save 
-    postEmployee(employeeData: FormData): Observable<any>{
+    postProducts(employeeData: FormData): Observable<any>{
       return this.http.post<any>(_url+'Products/SavedProducts',employeeData).pipe(
         tap(()=>{
           this.RequiredRefresh.next();
@@ -48,12 +49,25 @@ export class ProductsService {
     
     
   // // PUT: Update an existing employee
-  updateEmployee(EmployeeForm: any, id: number): Observable<void> {
+  updateEmployee(id: number): Observable<void> {
     const url = `${_url}Products/${id}`; // Correct URL construction
-    return this.http.put<void>(url, EmployeeForm, this.httpOptions) // Pass EmployeeForm as the body
+    return this.http.put<void>(url, this.httpOptions) // Pass EmployeeForm as the body
       .pipe(
         catchError(this.handleError<void>('updateEmployee'))
       );
+  }
+
+  updateProduct(id: number, productData: any): Observable<any> {
+    const url = `${_url}Products/${id}`;
+    return this.http.put<any>(url, productData, this.httpOptions)
+      .pipe(
+        catchError(this.handleError2)
+      );
+  }
+   // Error handling
+   private handleError2(error: any): Observable<never> {
+    console.error('An error occurred:', error);
+    return throwError(() => new Error('Something went wrong; please try again later.'));
   }
   
     deleteEmployee(empID: string): Observable<void> {
@@ -73,7 +87,23 @@ export class ProductsService {
       const url = `${_url}Products/GetProductByImageName/${data}`;
       return this.http.get<any>(url);
     }
+    // updateInventoryStatus(recordId: number, status: string): Observable<any> {
+    //   return this.http.post(_url, { id: recordId, status: status });
+    // }
+    updateInventoryStatus(id: number, status: string): Observable<any> {
+      return this.http.post<any>(`${_url}Products/update-inventory-status/${id}`, { status }).pipe(
+        tap(() => {
+          this.RequiredRefresh.next();  // Trigger any necessary refreshes
+        }),
+        catchError(this.handleError<any>('updateInventoryStatus'))  // Error handling
+      );
+    }
     
+    getOngoingProducts(): Observable<any> {
+      return this.http.get<any>(`${_url}Products/GetProductByOngoing`).pipe(
+        catchError(this.handleError<any>('getOngoingProducts'))
+      );
+    }
     
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

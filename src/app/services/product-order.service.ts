@@ -35,7 +35,10 @@ export class ProductOrderService {
   DeleteProductOrder(orderId: number): Observable<void> {
     return this.http.delete<void>(`${_url}ProductsOrder/${orderId}`);
   }
-  
+  GetTotalAmountByUser(userId:number): Observable<any> {
+    const url = `${_url}ProductsOrder/GetTotalAmountByUser/${userId}`; 
+    return this.http.get<any>(url);  
+  }
 
 
 }

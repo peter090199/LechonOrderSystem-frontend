@@ -1,19 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-products-ui',
-//   templateUrl: './products-ui.component.html',
-//   styleUrls: ['./products-ui.component.css']
-// })
-// export class ProductsUIComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -39,6 +23,8 @@ export class ProductsUIComponent implements OnInit {
               productName  : new FormControl(''),
               category      : new FormControl(''),
               price     : new FormControl(''),
+              alertQty : new FormControl(''),
+              quantity : new FormControl('')
   });
   
   
@@ -52,14 +38,15 @@ export class ProductsUIComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data)
-   {
-     if(this.data.id){
-        this.btnSave = "Update";
-        this.productForm.controls['productId'].disable();
-        this.GetItemFormData();
+      {
+      if(this.data.id){
+        console.log(this.data.id)
+          this.btnSave = "Update";
+          this.productForm.controls['productId'].disable();
+          this.GetItemFormData();
+        }
+    
       }
-  
-    }
     else{
       this.onCheck(true);
     }
@@ -73,6 +60,9 @@ export class ProductsUIComponent implements OnInit {
     this.productForm.controls['productName'].setValue(this.data.productName);
     this.productForm.controls['category'].setValue(this.data.category);
     this.productForm.controls['price'].setValue(this.data.price);
+    this.productForm.controls['alertQty'].setValue(this.data.alertQty);
+    this.productForm.controls['quantity'].setValue(this.data.quantity);
+    this.productForm.controls['Image'].setValue(this.selectedFile);
   }
 
   onSubmit():void {
@@ -85,6 +75,8 @@ export class ProductsUIComponent implements OnInit {
       employeeData.append('productName', this.productForm.get('productName')?.value);
       employeeData.append('category', this.productForm.get('category')?.value);
       employeeData.append('price', this.productForm.get('price')?.value);
+      employeeData.append('alertQty', this.productForm.get('alertQty')?.value);
+      employeeData.append('quantity', this.productForm.get('quantity')?.value);
      // employeeData.append('image', this.selectedFile);
   
       // Append file if selected
@@ -95,8 +87,8 @@ export class ProductsUIComponent implements OnInit {
       if (this.btnSave == "Save")
         {
           console.log(employeeData)
-          this.empService.postEmployee(employeeData).subscribe({
-            next: (res) => {
+          this.empService.postProducts(employeeData).subscribe({
+            next: () => {
               this.notificationService.popupSwalMixin("Successfully Saved.");
               this.ResetForm();
               this.loading = false;
@@ -109,7 +101,7 @@ export class ProductsUIComponent implements OnInit {
       } 
        if (this.btnSave == 'Update') 
         {
-        this.empService.updateEmployee(employeeData,this.data.id).subscribe({
+        this.empService.updateProduct(this.data.id,employeeData).subscribe({
           next: () => {
             this.notificationService.popupSwalMixin("Successfully Updated.");
             this.dialogRef.close(true); 
@@ -177,6 +169,8 @@ export class ProductsUIComponent implements OnInit {
     this.productForm.controls['productName'].setValue('');
     this.productForm.controls['category'].setValue('');
     this.productForm.controls['price'].setValue('');
+    this.productForm.controls['alertQty'].setValue('');
+    this.productForm.controls['quantity'].setValue('');
     this.previewUrl = null; // Reset image preview
     this.selectedFile = null; // Reset selected file
   }

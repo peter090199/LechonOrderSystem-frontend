@@ -79,17 +79,24 @@
                 </div>
               </ng-template>
          </div>
+       
     </div>
-
+   
+    
     <!-- Checkout Footer -->
-  <div class="checkout-footer" *ngIf="isViewingOrder">
-    <div class="footer-content">
-      <h3 class="product-price">Total: ₱{{ totalPrice | number: '1.2-2' }}</h3>
-      <button mat-raised-button color="accent" class="checkout-btn" (click)="checkoutOrder()">
-        Checkout
-      </button>
+  
+    <div class="checkout-footer" *ngIf="isViewingOrder">
+      <div class="footer-content">
+        <h3 class="product-price">
+          Payment Method<br>
+          Total: ₱{{ totalAmount | number: '1.2-2' }}
+        </h3>
+        <button mat-raised-button color="accent" class="checkout-btn" (click)="checkoutOrder()">
+          Checkout
+        </button>
+      </div>
     </div>
-  </div>
+    
 
   </section>
 

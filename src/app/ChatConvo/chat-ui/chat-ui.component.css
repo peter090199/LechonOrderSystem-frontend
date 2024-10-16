@@ -1,0 +1,56 @@
+.chat-window {
+    position: fixed;        /* Make the chat window fixed on the screen */
+    bottom: 0;              /* Align it at the bottom of the screen */
+    right: 0;               /* Align it to the right side */
+    width: 290px;           /* Define the width of the chat window */
+    height: 400px;          /* Define the height of the chat window */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(252, 191, 191, 0.2);  /* Optional shadow for styling */
+    border-top-left-radius: 10px; /* Rounded top-left corner */
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;  
+            /* Ensure it appears above other elements */
+  }
+  
+  .chat-header {
+    padding: 10px;
+    background-color: #9e068a;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 10px; /* Rounded top-left corner */
+  }
+  
+  .chat-body {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;  /* Allow scrolling if content grows too large */
+  }
+  
+  .chat-footer {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes bgColorChange {
+    0% {
+      background-color: #bd07ce;  /* Light grey */
+    }
+    100% {
+      background-color: white;  /* Fade into white */
+    }
+  }
+  

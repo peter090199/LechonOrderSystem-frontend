@@ -4,6 +4,7 @@
   background-color: transparent;
   padding: 0px;
 }
+
 .logo-section {
   display: flex; /* Aligns children (image and text) in a row */
   align-items: center; /* Centers items vertically */

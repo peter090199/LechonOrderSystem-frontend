@@ -19,7 +19,8 @@ import { HomeComponent } from './Home/componentsUI/home/home.component';
 import { ProductItemsComponent } from './Files/components/product-items/product-items.component';
 import { ViewOrderTableComponent } from './Home/componentsTable/view-order-table/view-order-table.component';
 import { UserHomepageComponent } from './header-page/user-homepage/user-homepage.component';
-
+import { InventoryProductUIComponent } from './Inventory/inventory-product-ui/inventory-product-ui.component';
+import { ProductsUIComponent } from './Files/componentsUI/products-ui/products-ui.component';
 
 
 const routes: Routes = [
@@ -78,6 +79,11 @@ const routes: Routes = [
         path: 'home/view-order', component: ViewOrderTableComponent,
         canActivate: [AuthGuard],
         data: { roles: ['admin','user'] }
+       },
+       { 
+        path: 'inventory/products', component: InventoryProductUIComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['admin'] }
        },
        { 
         path: 'menus/menu', component: HomeComponent,

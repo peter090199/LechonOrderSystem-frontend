@@ -23,9 +23,32 @@
   .close-icon {
     display: flex;
     justify-content: flex-end;
-    padding: 12px;
+    padding: 20px;
   }
+  .chat-body {
+    position: relative;
+    padding: 30px;
+  }
+  
+  .chat-body button {
+    float: right;         /* Moves the button to the right side */
+    margin-top: 0px;
 
+    
+       /* Optional for some margin from the edge */
+  }
+  
+  /* Alternatively, use flexbox */
+
+  .chat-body {
+    display: flex;
+    justify-content: flex-end;  /* Align the button to the right */
+    padding: 30px;
+    margin: 0px;
+    
+  }
+  
+  
   @media (max-width: 768px) {
     .sidenav {
       width: 100%;

@@ -1,0 +1,76 @@
+/* Adjust the width of the select column */
+.mat-column-select {
+  width: 10%; /* Set your desired width here */
+}
+
+/* Optionally center the checkbox */
+.mat-column-select mat-checkbox {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Ensures each table container is scrollable if the content overflows */
+.table-container {
+    margin: 5px;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+  }
+/* Custom font size for header */
+.custom-header {
+  font-size: 12px; /* Set your preferred font size */
+}
+
+/* Custom font size for data cells */
+.custom-cell {
+  font-size: 16px; /* Set your preferred font size */
+}
+
+  mat-grid-tile{
+    margin-top: 0px;
+    width: 100%;
+  }
+  /* Applies styling to the table for better visibility and readability */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  
+  /* Highlights the rows on hover for better interaction */
+  mat-row:hover {
+    background-color: #eeeeee;
+  }
+  button{
+    width: 120px;
+    font-size: 12px;
+  }
+  
+  /* Ensures the table headers are sticky to the top of the container */
+  .mat-header-row {
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+    z-index: 2;
+  }
+  
+  /* Adds spacing between grid tiles */
+  mat-grid-tile {
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+  
+  
+  }
+  .search-div
+  {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: sticky;
+    
+  }
+  
+  

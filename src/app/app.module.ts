@@ -40,10 +40,13 @@ import { ProductsUIComponent } from './Files/componentsUI/products-ui/products-u
 import { ProductDetailsComponent } from './Home/componentsUI/product-details/product-details.component';
 import { DecimalPipe } from '@angular/common';
 import { ViewOrderTableComponent } from './Home/componentsTable/view-order-table/view-order-table.component';
-import { CheckoutComponent } from './Home/componentsUI/check-out-ui/check-out-ui.component';
+import { CheckOutUIComponent } from './Home/componentsUI/check-out-ui/check-out-ui.component';
 import { UserHomepageComponent } from './header-page/user-homepage/user-homepage.component';
 import { UserViewProductsComponent } from './header-page/user-homepage/user-view-products/user-view-products.component';
-
+import { GoogleMapsModule } from '@angular/google-maps';
+import { ChatUIComponent } from './ChatConvo/chat-ui/chat-ui.component';
+import { ProductsTableComponent } from './Inventory/products-table/products-table.component';
+import { InventoryProductUIComponent } from './Inventory/inventory-product-ui/inventory-product-ui.component';
 
 @NgModule({
   declarations: [
@@ -75,9 +78,12 @@ import { UserViewProductsComponent } from './header-page/user-homepage/user-view
     ProductsUIComponent,
     ProductDetailsComponent,
     ViewOrderTableComponent,
-    CheckoutComponent,
+    CheckOutUIComponent,
     UserHomepageComponent,
     UserViewProductsComponent,
+    ChatUIComponent,
+    ProductsTableComponent,
+    InventoryProductUIComponent,
   
   ],
   imports: [
@@ -90,15 +96,18 @@ import { UserViewProductsComponent } from './header-page/user-homepage/user-view
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
-
+    FlexLayoutModule,
+    GoogleMapsModule
     
 
   ],
+
+  
   providers: [DatePipe, JwtHelperService,DecimalPipe, 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }
   ],
   
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

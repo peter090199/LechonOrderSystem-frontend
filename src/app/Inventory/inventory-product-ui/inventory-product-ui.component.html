@@ -1,0 +1,160 @@
+<mat-grid-list cols="3" rowHeight="550px">
+  
+    <mat-grid-tile>
+      <div class="table-container">
+        <div class="search-div" >
+            <mat-form-field class="w-40" floatLabel="never" appearance="standard" >
+              <input matInput [(ngModel)]="searchKey" [placeholder]="placeHolder"  (keyup)="applyFilter()" autocomplete="false">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+                <mat-icon>close</mat-icon>
+              </button> 
+            </mat-form-field>
+            <button type="button" mat-raised-button color="accent" (click)="onAddToOngoing()">
+               Add Ongoing
+            </button>
+         </div>
+         <mat-table [dataSource]="products" class="mat-elevation-z4" matSort>
+
+          <ng-container matColumnDef="select" class="mat-column-select">
+            <mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="toggleAll($event)" [checked]="isAllSelected()">
+              </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let products">
+              <mat-checkbox (change)="toggleSelection(products)" [checked]="isSelected(products)">
+              </mat-checkbox>
+            </mat-cell>
+          </ng-container>
+          
+
+            <ng-container matColumnDef="productName" class="mat-column-select">
+              <mat-header-cell *matHeaderCellDef  mat-sort-header>Name</mat-header-cell>
+              <mat-cell  class="custom-header" *matCellDef="let products">{{ products.productName }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="category" class="mat-column-select">
+              <mat-header-cell *matHeaderCellDef  mat-sort-header>Category</mat-header-cell>
+              <mat-cell  class="custom-header" *matCellDef="let products">{{ products.category }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+              <mat-header-cell *matHeaderCellDef  mat-sort-header>Available</mat-header-cell>
+              <mat-cell  class="custom-header" *matCellDef="let products">{{ products.quantity }}</mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="mergeColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: mergeColumns;"></mat-row>
+
+              <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+                </mat-footer-cell>
+             </ng-container>
+      
+              <ng-container matColumnDef="noData">
+                  <mat-footer-cell *matFooterCellDef colspan="6">
+                      No data.
+                  </mat-footer-cell>
+              </ng-container>
+      
+              <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': !isLoading}"></mat-footer-row>
+              <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': data.length > 0}"></mat-footer-row>
+         </mat-table>
+         <mat-paginator class="mat-paginator-sticky" [pageSize]="10" [pageSizeOptions]="pageSizeOptions1" showFirstLastButtons> </mat-paginator>
+      </div>
+    </mat-grid-tile>
+  
+    <!-- Menu -->
+    <mat-grid-tile>
+      <div class="table-container">
+        <div class="search-div">
+          <mat-form-field class="w-20" floatLabel="never" appearance="standard">
+            <input matInput autocomplete="false" placeholder="Search" >
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          
+          <button type="button" mat-raised-button color="accent" (click)="clickMenu()">
+            Finish
+          </button>
+         
+        </div>
+        <mat-table mat-table [dataSource]="ongoingProducts" matSort class="mat-elevation-z4">
+          <ng-container *ngFor="let dc of displayedColumns2" [matColumnDef]="dc" sticky>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{dc}}</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element[dc]}}</mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns2; sticky:true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns2;">
+        </mat-row>
+  
+  
+          <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+                <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+            </mat-footer-cell>
+         </ng-container>
+  
+          <ng-container matColumnDef="noData">
+              <mat-footer-cell *matFooterCellDef colspan="6">
+                  No data.
+              </mat-footer-cell>
+          </ng-container>
+  
+          <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': !isLoading}"></mat-footer-row>
+          <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': data.length > 0}"></mat-footer-row>
+        </mat-table>
+        <mat-paginator class="mat-paginator-sticky" [pageSize]="10" [pageSizeOptions]="pageSizeOptions2" showFirstLastButtons> </mat-paginator>
+      </div>
+    </mat-grid-tile>
+  
+    <mat-grid-tile>
+      <div class="table-container">
+        <div class="search-div">
+          <mat-form-field class="w-40" floatLabel="never" appearance="standard">
+            <input matInput autocomplete="false" placeholder="Enter Sub-Menu">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <button type="button" mat-raised-button color="accent">
+             New Inventory
+          </button>
+         
+        </div>
+  
+        <mat-table mat-table class="mat-elevation-z4">
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+          </ng-container>
+          
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+          <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+                <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+            </mat-footer-cell>
+         </ng-container>
+         <ng-container matColumnDef="noData">
+          <mat-footer-cell *matFooterCellDef colspan="6">
+              No data.
+          </mat-footer-cell>
+         </ng-container>
+         <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':!isLoading}"></mat-footer-row>
+  
+        </mat-table>
+        <mat-paginator class="mat-paginator-sticky" [pageSize]="10" [pageSizeOptions]="pageSizeOptions3" showFirstLastButtons> </mat-paginator>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  

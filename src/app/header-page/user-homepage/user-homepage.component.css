@@ -8,8 +8,22 @@
     padding: 12px;
 }
 .container-fluid{
-  padding: 20px;
+  padding: 60px;
+  overflow: auto;
 }
+.description {
+  padding: 10px;
+  margin: 30px;
+  margin-bottom: 60px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  background-color: #fff; /* Clean white background */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+ h2{
+  font-size: 25px;
+  margin-bottom: 80px;
+ }
+
 
 /* General Styling for the Product Card */
 .product-card {
@@ -57,15 +71,8 @@ mat-card-image {
 .mat-raised-button:hover {
   background-color: #e64a19; /* Slightly darker orange on hover */
 }
-.content{
-  padding: 0px;
-  width: 100%;
-  margin: 0px;
-  background-color: none;
-  background-origin: unset;
 
-}
-.content p {
+ p {
   font-size: 18px; /* Adjusts font size */
   line-height: 1.6; /* Line height for readability */
   color: #000000; /* Gray color for the text */
@@ -76,18 +83,30 @@ mat-card-image {
 /* Responsive grid adjustment */
 @media (max-width: 768px) {
   .product-card {
-    margin: 5px;
+    margin: 15px;
     border-radius: 12px; /* Rounded corners */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
     margin-top:10px;
     margin-bottom: 50px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
-    background-color: #fff; /* Clean white background */
+    transition: transform 0.3s ease, box-shadow 0.3s ease-in; /* Smooth hover effect */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: auto;
+    padding: 12px;
   }
-   
 
+  p {
+    font-size: 17px; /* Adjusts font size */
+    line-height: 1.6; /* Line height for readability */
+    color: #000000; /* Gray color for the text */
+    font-family: 'Tahoma'; /* Font family */
+    margin: 0px;
+    padding: 0px;
+  }
+  h2{
+    margin: 10px;
+    width: 100%;
+    text-align: center;
+  }
   .product-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
   }
@@ -96,7 +115,7 @@ mat-card-image {
   }
 
   .product-card h1 {
-    font-size: 1rem; /* Adjust text size for smaller screens */
+    font-size: 14px; /* Adjust text size for smaller screens */
   }
 }
 
@@ -105,7 +124,6 @@ mat-card-image {
 .container {
     width: 100%;
     margin: 0px;
-    position: relative;
   }
   
 button{
@@ -162,6 +180,31 @@ button.mat-raised-button {
   background: #b80fa1;
 
 }
+/* CSS ANIMATION */
+
+.content {
+  opacity: 0; /* Initial state */
+  transform: translateY(20px); /* Slide in effect from below */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* Transition for opacity and transform */
+}
+
+.content.visible {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Reset transform */
+}
+
+/* For product cards */
+.product-card {
+  opacity: 0; /* Initial state */
+  transform: translateY(20px); /* Slide in effect from below */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* Transition for opacity and transform */
+}
+
+.product-card.visible {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Reset transform */
+}
+
 
   /* Responsive design adjustments */
   @media (max-width: 599px) {
@@ -189,6 +232,7 @@ button.mat-raised-button {
     .mobile-card {
       width: 90%;
     }
+    
   }
   
   @media (min-width: 600px) {
@@ -197,6 +241,19 @@ button.mat-raised-button {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .content, .product-card {
+      transition: opacity 0.4s ease, transform 0.4s ease; /* Faster transition for mobile */
+    }
+  }
+  
+  /* Additional styles for mobile */
+  @media (max-width: 480px) {
+    .content, .product-card {
+      transform: translateY(10px); /* Less slide for smaller screens */
     }
   }
   

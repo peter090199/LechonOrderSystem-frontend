@@ -36,7 +36,7 @@ export class EditEmployeeComponent implements OnInit {
     if (this.editEmployeeForm.valid) {
       const updatedEmployee = this.editEmployeeForm.value;
     //  console.log(this.editEmployeeForm)
-      this.employeeService.updateEmployee(updatedEmployee,this.data.Id).subscribe({
+      this.employeeService.updateProduct(updatedEmployee,this.data.Id).subscribe({
         next: (res) => {
           this.notificationsService.popupSwalMixin("Successfully Saved. " + res);
           this.Reset();

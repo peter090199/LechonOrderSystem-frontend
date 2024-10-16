@@ -137,5 +137,14 @@ export class LandingPageComponent implements OnInit {
   logout() {
     this.logoutService.logout();
   }
+  isChatOpen = false;
+
+  toggleChat() {
+    this.isChatOpen = !this.isChatOpen;
+  }
+
+  onCloseChat() {
+    this.isChatOpen = false;
+  }
 
 }

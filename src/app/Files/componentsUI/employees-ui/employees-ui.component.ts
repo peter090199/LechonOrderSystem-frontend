@@ -60,7 +60,7 @@ export class EmployeesUIComponent implements OnInit {
   
     if (this.btnSave == "Save")
        {
-        this.empService.postEmployee(employeeData).subscribe({
+        this.empService.postProducts(employeeData).subscribe({
           next: (res) => {
             this.notificationService.popupSwalMixin("Successfully Saved.");
             this.ResetForm();
@@ -74,7 +74,7 @@ export class EmployeesUIComponent implements OnInit {
     } 
     else if (this.btnSave == 'Update') 
       {
-      this.empService.updateEmployee(employeeData,this.data.id).subscribe({
+      this.empService.updateProduct(employeeData,this.data.id).subscribe({
         next: () => {
           this.notificationService.popupSwalMixin("Successfully Updated.");
           this.dialogRef.close(true); 

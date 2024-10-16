@@ -1,8 +1,8 @@
-<app-user-menu-page></app-user-menu-page>
-<div class="container-fluid">
-<div class="content">
-  
-  <h2>  About Oink Online Market</h2>
+
+<div class="container-fixed">
+
+  <div class="description" [@scrollFadeIn]>
+    <h2>About Oink Online Market</h2>
     <p>
         Oink Online Market is the premier online destination for pig enthusiasts, farmers, and
         businesses alike. Our goal is to bring together a carefully curated selection of products 
@@ -13,7 +13,7 @@
 
     </p>
 
-    <h2>What We Offer:</h2>
+    <h2 >What We Offer:</h2>
     <p>
       1.Premium Pig Feed and Nutrition
       Our selection of top-quality pig feed is designed to meet the nutritional needs of pigs at every 
@@ -23,7 +23,7 @@
     </p>
 
    <h2>Health and Wellness Products</h2> 
-   <p>
+   <p [@scrollAnimation]>
           We offer a range of supplements, medications, and health care products to keep your pigs 
           in the best shape possible. From vitamins and minerals to disease prevention solutions, 
           we have the products that keep your herd healthy and thriving.
@@ -43,11 +43,16 @@
           and valuable farming resources. Our blog features guides, tips, and news on pig farming, so you 
           can stay informed and up-to-date with the latest industry trends.
     <p> 
-    </div>
+
+
+  </div>
+
    
-      <mat-grid-list cols="4" gutterSize="10px" rowHeight="1:1" *ngIf="!isMobile">
-        <mat-grid-tile *ngFor="let stage of pigStages">
-          <mat-card class="product-card">
+      <mat-grid-list cols="4" gutterSize="10px" rowHeight="1:1" *ngIf="!isMobile" >
+        <mat-grid-tile *ngFor="let stage of pigStages; let i = index">
+          <mat-card class="product-card" id="mat-card-{{i}}"
+           [@scrollAnimation]>
+
             <img mat-card-image [src]="getImagePath(stage.imagePath)">
             <mat-card-content>
               <h3 class="text-center">{{ stage.productName }}</h3>
@@ -72,28 +77,27 @@
           </mat-card-actions>
         </mat-card>
       </div>
-   
-      <div class="content">
-        <h2>Why Choose Oink Online Market?</h2>
-        <p>
-          Wide Selection of Quality Products
-          We pride ourselves on offering only the best products for pigs, carefully selected to ensure quality, safety,  
-          and performance.
-        </p>
-        <p>
-          Fast, Reliable Shipping
-          We understand the importance of timely deliveries, which is why we strive to offer fast, reliable shipping to ensure that your pigs get what they need, when they need it.
+     <div class="description" >
+            <h2>Why Choose Oink Online Market?</h2>
+            <p [@scrollAnimation]>
+              Wide Selection of Quality Products
+              We pride ourselves on offering only the best products for pigs, carefully selected to ensure quality, safety,  
+              and performance.
+            </p>
+            <p [@scrollAnimation]>
+              Fast, Reliable Shipping
+              We understand the importance of timely deliveries, which is why we strive to offer fast, reliable shipping to ensure that your pigs get what they need, when they need it.
 
-          Customer-Centric Service
-          At Oink Online Market, customer satisfaction is our top priority. Our dedicated support team is always here to answer your questions, provide guidance,
-          and make your shopping experience as smooth as possible.
-        </p>
-
+              Customer-Centric Service
+              At Oink Online Market, customer satisfaction is our top priority. Our dedicated support team is always here to answer your questions, provide guidance,
+              and make your shopping experience as smooth as possible.
+            </p>
       </div>
-  
+   
+  </div>
 
 
 
 
-</div>
+
 

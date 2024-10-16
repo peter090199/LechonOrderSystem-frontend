@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section" class="content-scrollable">
     <div class="search-div">
       <mat-form-field class="w-40" floatLabel="never" appearance="standard">
         <input matInput [(ngModel)]="searchKey" [placeholder]="placeHolder" (keyup)="applyFilter()" autocomplete="false">
@@ -49,6 +49,17 @@
         <ng-container matColumnDef="price">
           <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
           <mat-cell *matCellDef="let products">{{ products.price |number: '1.2-2' }}</mat-cell>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="alertQty">
+          <mat-header-cell *matHeaderCellDef>AlertQty</mat-header-cell>
+          <mat-cell *matCellDef="let products">{{ products.alertQty}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+          <mat-cell *matCellDef="let products">{{ products.quantity}}</mat-cell>
         </ng-container>
   
         <ng-container matColumnDef="actions">
