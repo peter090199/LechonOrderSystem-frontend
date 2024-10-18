@@ -44,17 +44,13 @@ export class InventoryProductUIComponent implements OnInit {
 
 //  mergeColumns: any = this.displayedColumns.concat(this.addedColumns);
  mergeColumns2: any = this.displayedColumns2.concat(this.addedColumns2);
-
   isLoading :boolean = true;
-  ongoingProducts: any[] = [];
+  ongoingProducts: any=[];
   errorMessage: string | null = null;
-  
   cntOngoing: any;
   products = new MatTableDataSource<any>([]);
   accessRightsTable2 = new MatTableDataSource<any>([]);
-
-  // inventory: any;
-  data: any[] = [];
+  pendingdata: any=[];
   selection = new SelectionModel<any>(true, []); // Store selected products
 
   @ViewChild(MatPaginator) paginator1!: MatPaginator;
@@ -68,10 +64,10 @@ export class InventoryProductUIComponent implements OnInit {
     private productsService:ProductsService,
     private http:HttpClient
 
-  ) { }
+  ) {this.loadPendingProducts();}
 
   ngOnInit(): void {
-    this.loadProducts();
+
     this.loadOngoingProducts();
 
   }
@@ -86,23 +82,6 @@ export class InventoryProductUIComponent implements OnInit {
   }
 
   
-  async loadProducts(): Promise<void> {
-    try {
-      this.isLoading = true;
-      this.data = await firstValueFrom(this.productsService.getEmployees());
-    //  console.log(this.data)
-    
-      this.products.data = this.data;
-      this.products.paginator = this.paginator1;
-      this.products.sort = this.sort;
-      this.isLoading = false;
-  
-    } catch (error) {
-      console.error('Error fetching employee data:', error);
-      this.isLoading = false;
-    }
-  }
-
 toggleSelection(row: any): void {
   this.selection.toggle(row);
 }
@@ -160,6 +139,47 @@ loadOngoingProducts(): void {
     }
   );
 }
+
+// loadPendingProducts(): void {
+//   this.productsService.GetInventoryPendingProducts().subscribe(
+//     (pendingdata) => {
+
+//       this.products = pendingdata; // Assign the returned data to the ongoingProducts property
+//     },
+//     (error) => {
+//       this.errorMessage = error; // Assign the error message if there was an error
+//     }
+//   );
+//}
+
+async loadPendingProducts(): Promise<void> {
+  this.isLoading = true; // Set loading state at the start
+
+  try {
+    this.pendingdata = await firstValueFrom(this.productsService.getInventoryPendingProducts());
+    this.products.data = this.pendingdata;
+    this.products.paginator = this.paginator1;
+    this.products.sort = this.sort;
+  } 
+  catch (error) {
+    console.error('Error fetching items data:', error);
+    this.isLoading = false; 
+  } 
+}
+
+
+// loadPendingProducts(): void {
+//   this.productsService.GetInventoryPendingProducts().subscribe(
+//     (data) => {
+
+//       this.ongoingProducts = data; // Assign the returned data to the ongoingProducts property
+//     },
+//     (error) => {
+//       this.errorMessage = error; // Assign the error message if there was an error
+//     }
+//   );
+// }
+
 
  
 // async loadProducts(): Promise<void> {

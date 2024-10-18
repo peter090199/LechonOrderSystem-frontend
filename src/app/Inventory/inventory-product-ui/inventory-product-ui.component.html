@@ -59,7 +59,7 @@
               </ng-container>
       
               <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': !isLoading}"></mat-footer-row>
-              <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': data.length > 0}"></mat-footer-row>
+              <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': pendingdata.length > 0}"></mat-footer-row>
          </mat-table>
          <mat-paginator class="mat-paginator-sticky" [pageSize]="10" [pageSizeOptions]="pageSizeOptions1" showFirstLastButtons> </mat-paginator>
       </div>
@@ -105,7 +105,7 @@
           </ng-container>
   
           <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': !isLoading}"></mat-footer-row>
-          <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': data.length > 0}"></mat-footer-row>
+          <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': ongoingProducts.length > 0}"></mat-footer-row>
         </mat-table>
         <mat-paginator class="mat-paginator-sticky" [pageSize]="10" [pageSizeOptions]="pageSizeOptions2" showFirstLastButtons> </mat-paginator>
       </div>

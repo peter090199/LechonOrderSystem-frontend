@@ -33,6 +33,7 @@ export class ProductsService {
   getEmployees(): Observable<any> {
     return this.http.get<any>(_url+"Products");
   }
+  
     // save 
     postProducts(employeeData: FormData): Observable<any>{
       return this.http.post<any>(_url+'Products/SavedProducts',employeeData).pipe(
@@ -104,7 +105,12 @@ export class ProductsService {
         catchError(this.handleError<any>('getOngoingProducts'))
       );
     }
+
     
+    getInventoryPendingProducts(): Observable<any> {
+      return this.http.get<any>(_url+"Products/GetInventoryPendingProducts");
+    }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); 
