@@ -1,16 +1,1 @@
-{
-  "routes": [
-    {
-      "route": "/register",
-      "methods": [
-        "patch"
-      ],
-      "rewrite": "/login/123",
-      "redirect": "/login",
-      "statusCode": 301,
-      "allowedRoles": [
-        "/"
-      ]
-    }
-  ]
-}
+{}
