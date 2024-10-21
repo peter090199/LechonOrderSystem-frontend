@@ -1,5 +1,9 @@
-"assets": [
-  "src/favicon.ico",
-  "src/assets",
-  "src/routes"
-]
+{
+    "routes": [
+      {
+        "route": "/*",
+        "rewrite": "/index.html"
+      }
+    ]
+  }
+  
