@@ -3,11 +3,11 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f0e8ef;
+  background-color: #ece6ec;
 }
 
 .register-form {
-  background-color: #ee98ee;
+  background-color: #ece6ec;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -65,4 +65,19 @@ mat-label{
 
 .links a:hover {
   text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .register-form  {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .register-form  h1 {
+    font-size: 18px;
+  }
+
+  .register-form  button {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
 }

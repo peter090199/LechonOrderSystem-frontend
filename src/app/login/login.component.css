@@ -69,3 +69,18 @@
   }
   /* Styles for mat-icon within the button */
 
+  @media (max-width: 480px) {
+    .login-form {
+      padding: 1rem;
+      max-width: 100%;
+    }
+  
+    .login-form h1 {
+      font-size: 18px;
+    }
+  
+    .login-form button {
+      font-size: 0.85rem;
+      padding: 0.5rem;
+    }
+  }
