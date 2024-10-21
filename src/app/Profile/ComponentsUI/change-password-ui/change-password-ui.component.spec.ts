@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 import { ChangePasswordUIComponent } from './change-password-ui.component';
 
 describe('ChangePasswordUIComponent', () => {
@@ -8,7 +8,8 @@ describe('ChangePasswordUIComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChangePasswordUIComponent ]
+      imports: [ReactiveFormsModule], // Add this line
+      declarations: [ChangePasswordUIComponent]
     })
     .compileComponents();
   });

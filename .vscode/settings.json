@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/8ab9730a-418b-4052-be16-abd8969cc526/resourceGroups/FrontEndAngularOnlineOink2/providers/Microsoft.Web/sites/FrontEndAngularOnlineOink",
+    "appService.deploySubpath": "."
+}

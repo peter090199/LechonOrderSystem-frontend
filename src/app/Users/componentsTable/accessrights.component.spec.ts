@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 import { AccessrightsComponent } from './accessrights.component';
 
 describe('AccessrightsComponent', () => {
@@ -8,7 +8,8 @@ describe('AccessrightsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccessrightsComponent ]
+      imports: [ReactiveFormsModule], // Add this line
+      declarations: [AccessrightsComponent]
     })
     .compileComponents();
   });

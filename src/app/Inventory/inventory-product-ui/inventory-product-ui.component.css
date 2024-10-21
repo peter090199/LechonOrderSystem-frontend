@@ -73,4 +73,18 @@
     
   }
   
+  .bordered-input {
+    text-align: center;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px;     /* Rounded corners */
+    padding: 4px;           /* Padding inside the input */
+    width: 70%;            /* Make input take full cell width */
+    box-sizing: border-box;  /* Ensures padding and border are included in the element's width */
+  }
+  
+  .bordered-input:focus {
+    outline: none;          /* Remove default outline on focus */
+    border-color: #3f51b5;  /* Change border color to match material design on focus */
+  }
+  
   

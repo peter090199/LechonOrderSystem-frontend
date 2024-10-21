@@ -33,6 +33,7 @@ export class ViewOrderTableComponent implements OnInit {
   userName:any;
 
   totalAmount: number | null = null;
+  someMethodThatNavigates: any;
 
   constructor(private router:Router,
   private orderService:ProductOrderService,

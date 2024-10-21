@@ -11,6 +11,9 @@ import { NotificationsService } from 'src/app/Global/notifications.service';
   styleUrls: ['./employees-ui.component.css']
 })
 export class EmployeesUIComponent implements OnInit {
+  close() {
+    throw new Error('Method not implemented.');
+  }
 
   btnSave     : string = "Save";
   loading     : boolean = false;

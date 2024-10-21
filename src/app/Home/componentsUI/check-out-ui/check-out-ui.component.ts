@@ -9,9 +9,9 @@ import { FormControl, Validators } from '@angular/forms';
 
 export class CheckOutUIComponent implements OnInit {
 
-  center: google.maps.LatLngLiteral = { lat: 37.7749, lng: -122.4194 }; // Example: San Francisco
+// Example: San Francisco
   zoom = 8;
-  selectedLocation: google.maps.LatLngLiteral | null = null;
+
 
   fullName: string = "";
   address: string = "";
@@ -88,7 +88,7 @@ export class CheckOutUIComponent implements OnInit {
       zipCode: this.zipCode,
       latitude: this.latitude,
       longitude: this.longitude,
-      selectedLocation: this.selectedLocation 
+
     });
   }
 }

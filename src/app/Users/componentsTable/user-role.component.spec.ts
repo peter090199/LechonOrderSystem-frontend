@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { UserRoleComponent } from '../user-role/components/user-role.component';
+import { UserRoleComponent } from './user-role.component';
 
 describe('UserRoleComponent', () => {
   let component: UserRoleComponent;

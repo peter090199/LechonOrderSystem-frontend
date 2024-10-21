@@ -14,6 +14,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { HttpClient } from '@angular/common/http';
 import { SelectionModel } from '@angular/cdk/collections';
 import { _url } from 'src/global-variables';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inventory-product-ui',
@@ -36,15 +37,16 @@ export class InventoryProductUIComponent implements OnInit {
     'productName','category'
   ];
   
-  displayedColumns2: string[] = ['productName', 'category','quantity'];
+  displayedColumns2: string[] = ['productName','quantity'];
   addedColumns2: string[] = [    
-    'Actions',
+    'physicalcount',
   ];
   mergeColumns: string[] = ['select', 'productName', 'category','quantity'];
 
 //  mergeColumns: any = this.displayedColumns.concat(this.addedColumns);
  mergeColumns2: any = this.displayedColumns2.concat(this.addedColumns2);
   isLoading :boolean = true;
+  isLoading2 :boolean = true;
   ongoingProducts: any=[];
   errorMessage: string | null = null;
   cntOngoing: any;
@@ -59,19 +61,20 @@ export class InventoryProductUIComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
+
   constructor(private fb: FormBuilder,private accessService:AccessrightsService,private alert:NotificationsService,
     private dialog : MatDialog,private menusService:MenusService,
     private productsService:ProductsService,
     private http:HttpClient
 
-  ) {this.loadPendingProducts();}
+  ) {}
 
   ngOnInit(): void {
-
+    this.loadPendingProducts();
     this.loadOngoingProducts();
 
   }
-  
+
 
   applyFilter(){
     this.products.filter = this.searchKey.trim().toLocaleLowerCase();
@@ -109,7 +112,6 @@ isAllSelected(): boolean {
 
 onAddToOngoing() {
   const checkedRecords = this.getCheckedData();
-
   if (checkedRecords.length === 0) {
     this.alert.toastrError("No checked row selected!");
   } else {
@@ -117,7 +119,8 @@ onAddToOngoing() {
     checkedRecords.forEach((record) => {
       this.productsService.updateInventoryStatus(record.id, 'ongoing').subscribe(
         (dt) => {
-          this.alert.popupSwalMixin("Records successfully selected!");
+          this.alert.popupSwalMixin("Succesfully Added.");
+          this.loadPendingProducts();
           this.loadOngoingProducts();  // Handle the response
         },
         (error) => {
@@ -128,117 +131,41 @@ onAddToOngoing() {
   }
 }
 
-loadOngoingProducts(): void {
-  this.productsService.getOngoingProducts().subscribe(
-    (data) => {
 
-      this.ongoingProducts = data; // Assign the returned data to the ongoingProducts property
-    },
-    (error) => {
-      this.errorMessage = error; // Assign the error message if there was an error
-    }
-  );
+async loadOngoingProducts(): Promise<void> {
+  try {
+    this.ongoingProducts = await firstValueFrom(this.productsService.getOngoingProducts());
+    this.accessRightsTable2.data = this.ongoingProducts;
+    // console.log(this.ongoingProducts)
+    this.accessRightsTable2.paginator = this.paginator2;
+    this.accessRightsTable2.sort = this.sort;
+    this.isLoading2 = false;
+  } 
+  catch (error) {
+    console.error('Error fetching items data:', error);
+    this.isLoading2 = true; 
+  } 
 }
 
-// loadPendingProducts(): void {
-//   this.productsService.GetInventoryPendingProducts().subscribe(
-//     (pendingdata) => {
-
-//       this.products = pendingdata; // Assign the returned data to the ongoingProducts property
-//     },
-//     (error) => {
-//       this.errorMessage = error; // Assign the error message if there was an error
-//     }
-//   );
-//}
-
 async loadPendingProducts(): Promise<void> {
-  this.isLoading = true; // Set loading state at the start
-
   try {
     this.pendingdata = await firstValueFrom(this.productsService.getInventoryPendingProducts());
     this.products.data = this.pendingdata;
     this.products.paginator = this.paginator1;
     this.products.sort = this.sort;
+    this.isLoading = false;
   } 
   catch (error) {
     console.error('Error fetching items data:', error);
-    this.isLoading = false; 
+    this.isLoading = true; 
   } 
 }
-
-
-// loadPendingProducts(): void {
-//   this.productsService.GetInventoryPendingProducts().subscribe(
-//     (data) => {
-
-//       this.ongoingProducts = data; // Assign the returned data to the ongoingProducts property
-//     },
-//     (error) => {
-//       this.errorMessage = error; // Assign the error message if there was an error
-//     }
-//   );
-// }
-
-
- 
-// async loadProducts(): Promise<void> {
-//   try {
-//     this.isLoading = true;
-//     this.data = await firstValueFrom(this.productsService.getEmployees());
-//   //  console.log(this.data)
-  
-//     this.products.data = this.data;
-//     this.products.paginator = this.paginator1;
-//     this.products.sort = this.sort;
-//     this.isLoading = false;
-
-//   } catch (error) {
-//     console.error('Error fetching employee data:', error);
-//     this.isLoading = false;
-//   }
-// }
-
 
 displayOngoingStocks(data: any) {
   // Implement the logic to display ongoing stocks
   console.log(data.id);
 }
 
-  // async loadAccessRights(): Promise<void> {
-  //   try {
-  //     this.isLoading = true;
-  //     this.accessUser = await firstValueFrom(this.accessService.getAccessRights());
-  //     this.accessRightsTable.data = this.accessUser;
-  //     this.accessRightsTable.paginator = this.paginator1;
-  //     this.accessRightsTable.sort = this.sort;
-  //     this.isLoading = false;
-      
-  //   } catch (error) {
-  //     console.error('Error fetching employee data:', error);
-  //     this.isLoading = false;
-  //   }
-  // }
-
-
-
-  // saveAccessRight() {
-  //   if (this.accessRightForm.valid) {
-  //     const accessName = this.accessRightForm.getRawValue();
-  //     this.accessService.saveUserAccess(accessName).subscribe({
-  //       next: () => {
-  //         this.isLoading = false;
-  //         this.clearText();
-  //         this.loadAccessRights();
-  //       },
-  //       error: (error) => {
-  //         console.error('Error saving text:', error);
-  //         this.isLoading = false;
-  //         this.loadAccessRights();
-  //       },
-  //     });
-  //   }
-  // }
 
   editEmployee(data?: any): void {
 
@@ -277,22 +204,84 @@ displayOngoingStocks(data: any) {
    }
   }
 
-
-  clickMenu(): void {
+  onPhysicalCountChange(product: any) {
+    // Handle the change of physical count
+    console.log('Updated physical count for product:', product.physicalCount);
     
-    // const dialogConfig = new MatDialogConfig();
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-    // dialogConfig.width = '400px';
-    // const dialogRef = this.dialog.open(AddMenuUIComponent, dialogConfig,
-    // );
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) {
-    //    // this.loadModule(); // Refresh the table after dialog closure
-    //   }
-    // });
+    // If necessary, send an API call or store the updated value
+  }
 
-    
+  // openConfirmationDialog(message: string): Promise<boolean> {
+  //   const dialogRef = this.dialog.open(YourConfirmationDialogComponent, {
+  //     data: { message: message }
+  //   });
+
+  //   return dialogRef.afterClosed().toPromise();
+  // }
+
+  async showWarningDialog(message: string): Promise<boolean> {
+    return Swal.fire({
+      title: 'Are you sure?',
+      text: message,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, continue',
+      cancelButtonText: 'No, cancel'
+    }).then((result:any) => {
+      return result.isConfirmed;  // Returns true if confirmed, false otherwise
+    });
+  }
+
+  // Add to finish logic
+  async addToFinish(): Promise<void> {
+    const msg = "Blank PhysicalCount Will NOT be included?";
+    this.alert.popupWarning(msg,".");
+    const result = await this.showWarningDialog(msg);
+
+    if (!result) {
+      return;
+    }
+    this.ongoingProducts.forEach(async (pd:any) => {
+      let physicalCount = 0;
+   
+      // Check if physicalCount is provided and numeric
+      if (pd.physicalCount !== null && !isNaN(pd.physicalCount)) {
+        physicalCount = parseFloat(pd.physicalCount);
+      //  console.log(pd.physicalCount)
+      } 
+      else {
+        const availableQty = parseFloat(pd.available);
+        if (availableQty > 0) {
+          physicalCount = availableQty;
+        }
+        if (physicalCount > 0) {
+          const item = await this.productsService.getproductsById(pd.id);
+          this.setNewInventoryCounts(item, physicalCount);
+         // await this.productsService.updateInventoryStatus('finish', pd.id);
+        }
+      }
+    });
+    Swal.fire('Success', 'Successfully Saved', 'success');
+
+    this.displayOngoingStocks2();
+    this.displayFinishStocks();
+  }
+
+  setNewInventoryCounts(item: any, physicalCount: number) {
+    // Implement logic to update inventory counts here
+  }
+
+  displayOngoingStocks2() {
+    // Refresh the ongoing products list
+    this,this.productsService.getOngoingProducts().subscribe(data => {
+      this.ongoingProducts = data;
+    });
+  }
+
+  displayFinishStocks() {
+    // Refresh the finished products list
   }
 
   // async loadModule(): Promise<void> {

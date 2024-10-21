@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://backendnetapi20241020211453.azurewebsites.net/api/'
 };

@@ -16,12 +16,16 @@ export class ToolBoxService {
   {
     return formatDate(new Date(),"YYYY-MM-dd HH:mm","en-US");
   }
-  ConvertToDateFormat(date:Date)
-  {
-    const parsedDateFrom = new Date(date);
-    var dateFrom =  this.datePipe.transform(parsedDateFrom, 'yyyy-MM-dd') || '';
-    return dateFrom;
+
+  formatDate(date: Date): string {
+    return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
   }
+  // ConvertToDateFormat(date:Date)
+  // {
+  //   const parsedDateFrom = new Date(date);
+  //   var dateFrom =  this.datePipe.transform(parsedDateFrom, 'yyyy-MM-dd') || '';
+  //   return dateFrom;
+  // }
   ConvertToDateTimeFormat(date:Date)
   {
     return formatDate(date,"YYYY-MM-dd HH:mm:ss","en-US");
@@ -36,10 +40,6 @@ export class ToolBoxService {
   ConvertToNumberFormatNoComma(x:any){
     var z = (Number(x.replaceAll(",","")));
     return z;
-  }
-
-  isNumber(value) {
-    return !isNaN(parseFloat(value)) && isFinite(value);
   }
   
   pageSize(){

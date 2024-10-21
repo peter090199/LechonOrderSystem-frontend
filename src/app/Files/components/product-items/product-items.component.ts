@@ -28,7 +28,7 @@ export class ProductItemsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private employeeService: ProductsService, 
-    private dialog : MatDialog,
+    public dialog : MatDialog,
     private notificationsService : NotificationsService
   ){
     
