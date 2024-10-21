@@ -1,1 +1,16 @@
-{}
+{
+  "routes": [
+    {
+      "route": "/login",
+      "methods": [
+        "patch",
+        "get",
+        "head",
+        "post",
+        "put",
+        "delete",
+        "options"
+      ]
+    }
+  ]
+}
