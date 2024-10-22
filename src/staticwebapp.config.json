@@ -1,13 +1,16 @@
 {
     "routes": [
       {
+        "route": "/api/*",
+        "rewrite": "https://backendnetapi20241020211453.azurewebsites.net/api/"
+      },
+      {
         "route": "/*",
-        "rewrite": "https://backendnetapi20241020211453.azurewebsites.net/"
+        "rewrite": "/index.html"
       }
     ],
     "navigationFallback": {
-      "rewrite": "/index.html",
-      "exclude": ["/api/*"]
+      "rewrite": "/index.html"
     },
     "responseOverrides": {
       "404": {
