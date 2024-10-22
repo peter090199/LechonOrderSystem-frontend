@@ -43,7 +43,6 @@ import { ViewOrderTableComponent } from './Home/componentsTable/view-order-table
 import { CheckOutUIComponent } from './Home/componentsUI/check-out-ui/check-out-ui.component';
 import { UserHomepageComponent } from './header-page/user-homepage/user-homepage.component';
 import { UserViewProductsComponent } from './header-page/user-homepage/user-view-products/user-view-products.component';
-import { GoogleMapsModule } from '@angular/google-maps';
 import { ChatUIComponent } from './ChatConvo/chat-ui/chat-ui.component';
 import { ProductsTableComponent } from './Inventory/products-table/products-table.component';
 import { InventoryProductUIComponent } from './Inventory/inventory-product-ui/inventory-product-ui.component';
@@ -97,7 +96,6 @@ import { InventoryProductUIComponent } from './Inventory/inventory-product-ui/in
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
-    GoogleMapsModule
     
 
   ],
