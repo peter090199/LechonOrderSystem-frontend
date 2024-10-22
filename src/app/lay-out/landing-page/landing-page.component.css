@@ -51,9 +51,20 @@
   
   @media (max-width: 768px) {
     .sidenav {
-      width: 50%;
-      
+      width: 100%;
+      position: absolute; /* or fixed, depending on your layout */
+      top: 0;
+      left: -100%; /* Initially hidden off-screen */
+      background-color: #333;
+      height: 100%;
+      transition: left 0.5s ease-in-out; /* Smooth transition */
     }
+    
+    /* Animation to slide in */
+    .sidenav.open {
+      left: 0; /* When the .open class is added, the sidenav slides in */
+    }
+    
     
       /* Links */
   .nav-item a {
