@@ -3,10 +3,6 @@
       {
         "route": "/*",
         "rewrite": "https://backendnetapi20241020211453.azurewebsites.net/"
-      },
-      {
-        "route": "/*",
-        "rewrite": "/index.html"
       }
     ],
     "navigationFallback": {
