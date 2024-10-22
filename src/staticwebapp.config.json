@@ -3,8 +3,9 @@
         {
             "route":"/",
             "rewrite":"/index.html",
+            "redirect": "/login",
             "statusCode":200
         }
     ]
-    
+
 }
