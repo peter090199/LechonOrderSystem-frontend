@@ -41,9 +41,7 @@
       display: block;
       overflow-x: auto;
       white-space: nowrap;
-      width: 100%;
     }
-
   }
 
   /* src/app/components/employee-list/employee-list.component.css */
