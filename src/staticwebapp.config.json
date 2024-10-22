@@ -1,8 +1,8 @@
 {
     "routes": [
       {
-        "route": "/api/*",
-        "rewrite": "https://backendnetapi20241020211453.azurewebsites.net/api/"
+        "route": "/*",
+        "rewrite": "https://backendnetapi20241020211453.azurewebsites.net/"
       },
       {
         "route": "/*",
