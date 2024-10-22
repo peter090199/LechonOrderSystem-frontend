@@ -1,11 +1,10 @@
 {
-    "routes":[
-        {
-            "route":"/",
-            "rewrite":"/index.html",
-            "redirect": "/login",
-            "statusCode":200
-        }
+"navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+        "*.{jpg,gif,png,gif,ico}",
+        "assets/*"
     ]
+}
 
 }
