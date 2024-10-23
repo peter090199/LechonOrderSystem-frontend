@@ -47,6 +47,7 @@ import { ChatUIComponent } from './ChatConvo/chat-ui/chat-ui.component';
 import { ProductsTableComponent } from './Inventory/products-table/products-table.component';
 import { InventoryProductUIComponent } from './Inventory/inventory-product-ui/inventory-product-ui.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +84,9 @@ import { InventoryProductUIComponent } from './Inventory/inventory-product-ui/in
     ChatUIComponent,
     ProductsTableComponent,
     InventoryProductUIComponent,
+    
+
+    
   
   ],
   imports: [

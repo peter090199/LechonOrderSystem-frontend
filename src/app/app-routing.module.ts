@@ -24,7 +24,9 @@ import { ProductsUIComponent } from './Files/componentsUI/products-ui/products-u
 
 
 const routes: Routes = [
-
+      // { 
+      //   path: 'home/view-order', component: ViewOrderTableComponent,
+      // },
   // { path: 'userPage', component: UserPageComponent },
   // { path: 'register', component: RegisterComponent }, // Accessible to everyone
   // { path: 'login', component: LoginComponent }, // Accessible to everyone
