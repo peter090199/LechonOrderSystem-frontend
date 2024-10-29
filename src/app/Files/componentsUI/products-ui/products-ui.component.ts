@@ -81,12 +81,12 @@ export class ProductsUIComponent implements OnInit {
   
       // Append file if selected
       if (this.selectedFile) {
-        employeeData.append('Image', this.selectedFile);
-      }
+        employeeData.append('file', this.selectedFile, this.selectedFile.name);
+      } 
     
       if (this.btnSave == "Save")
         {
-          console.log(employeeData)
+        //  console.log(employeeData)
           this.empService.postProducts(employeeData).subscribe({
             next: () => {
               this.notificationService.popupSwalMixin("Successfully Saved.");
