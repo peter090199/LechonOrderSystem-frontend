@@ -21,13 +21,13 @@ export class ViewOrderTableComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   
   orderList = new MatTableDataSource<any>([]);
-  isLoading = true;
-  countOrder:any;
+  isLoading = false;
+  countOrder:any=[];
   isViewingOrder: boolean = true;
   displayedColumns: string[] = ['productName','imagePath','quantity', 'price', 'totalAmount','actions'];
 
   data: any=[];
-  userId: number = 0;
+  userId: number=0;
   placeHolder       : string = "Search";
   searchKey         : string = "";
   userName:any;
@@ -48,7 +48,7 @@ export class ViewOrderTableComponent implements OnInit {
 
 //get totalamount
 fetchTotalAmount(userId:number): void {
-  this.orderService.GetTotalAmountByUser(userId).subscribe(
+  this.orderService.getTotalAmountByUser(userId).subscribe(
     (amount) => {
       this.totalAmount  = amount;
       this.isLoading = false;
@@ -59,27 +59,21 @@ fetchTotalAmount(userId:number): void {
   );
 }
 
-
-// checkoutOrder(): void {
-//   console.log('Proceed to checkout with total price:', this.totalPrice);
-// }
-
-
-//get order by userId
-loadUserOrders(userId:number): void {
+// Load orders by userId
+loadUserOrders(userId: number): void {
   this.orderService.getOrderByUserId(userId).subscribe({
-    next: (data) => {
-      this.countOrder = data;
-      this.orderList = data;
-      this.isLoading = false;
+    next: (orders) => {
+      this.orderList = orders; // Assign the fetched orders to orderList
+      this.isLoading = false;   // Turn off loading indicator
     },
     error: (err) => {
       console.error('Error loading user orders:', err);
-      this.isLoading = true;
+      this.isLoading = false; // Ensure loading indicator is off even on error
     }
-
   });
 }
+
+
   // Add this method to your existing ProductItemsComponent class
   getImagePath(imagePath: string): string {
     const baseUrl = 'http://localhost:5274/api/Images/'; // Adjust this to your API base URL
@@ -93,8 +87,10 @@ async loadUserId(): Promise<void> {
 
     const user = await firstValueFrom(this.users.getUserByUsername(this.userName));
     this.userId = user.id; 
+
     this.loadUserOrders(this.userId);
     this.fetchTotalAmount(this.userId);
+    this.isLoading = false;
 
     //console.log('User id:', this.userId);
   } catch (error) {
@@ -118,7 +114,7 @@ async loadUserId(): Promise<void> {
         if (result.value) {
           this.orderService.DeleteProductOrder(products.orderId).subscribe({
               next:()=>{
-                this.alert.popupSwalMixin("Successfuly deleted "+ products.productName);
+                this.alert.popupSwalMixin("Successfuly deleted ");
                 this.loadUserId();
               },
               error:()=>{

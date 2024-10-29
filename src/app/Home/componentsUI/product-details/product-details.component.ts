@@ -3,10 +3,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotificationsService } from 'src/app/Global/notifications.service';
 import { DecimalPipe } from '@angular/common';
 import { ProductsService } from 'src/app/services/products.service';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ProductOrderService } from 'src/app/services/product-order.service';
 import { RegisterService } from 'src/app/services/register.service';
+import { BehaviorSubject } from 'rxjs';
+import { _url } from 'src/global-variables';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -14,6 +18,9 @@ import { RegisterService } from 'src/app/services/register.service';
   providers: [DecimalPipe] 
 })
 export class ProductDetailsComponent implements OnInit {
+  private cartCount = new BehaviorSubject<number>(0);
+  cartCount$ = this.cartCount.asObservable();
+
   quantity: number = 1;
   totalAmount: number = 0;
   isLoading: boolean = true;
@@ -38,15 +45,16 @@ export class ProductDetailsComponent implements OnInit {
     private http: HttpClient,
     private productOrderService:ProductOrderService,
     private users:RegisterService,
-  ) {
-    
-  }
+    private router:Router
+  
+  ) {}
   
   ngOnInit(): void {
     this.LoadCounts();
     this.loadUserId();
     this.updateProduct(this.data);
   }
+
 
   // Adjust base URL from environment variables for better maintainability
   getImagePath(imgUrl: string): string {
@@ -106,6 +114,13 @@ async loadUserId(): Promise<void> {
 }
 
 
+  // Optional: Method to reset or set cart count (e.g., on loading the app)
+  setCartCount(count: number) {
+    this.cartCount.next(count);
+  }
+  onBack():void {
+    this.router.navigate(['header/menus/menu']); 
+    }
   AddToCart(){
     const product = {
       productName: this.product.productName,
@@ -116,16 +131,24 @@ async loadUserId(): Promise<void> {
       quantity: this.quantity,
       userId: this.userId
     };
+    // this.productOrderService.addProductToCart(product)
+    // {
+    //   return this.http.post<number>(`${_url}/ProductsOrder`, product).pipe(
+    //     tap((updatedCount) => {
+    //       this.cartCount.next(updatedCount); // Push updated count to subscribers
+    //     })
+    //   );
+    // }
+    
 
+      
     this.productOrderService.addProductToCart(product).subscribe({
         next:(message)=>{
             message = "Order Added.";
             this.alert.toastrInfo(message);
+            this.onBack();
             this.dialogRef.close();
             this.LoadCounts();
-
-           
-
         },
         error:(err) =>{
               err="Order Failed.";
@@ -144,7 +167,7 @@ async loadUserId(): Promise<void> {
       const user = await firstValueFrom(this.users.getUserByUsername(this.userName));
       this.userId = user.id; 
       
-      this.productOrderService.GetCountsOrderById(this.userId).subscribe({
+      this.productOrderService.getCountsOrderById(this.userId).subscribe({
         next: (count) => this.notificationCount = count,
         error: (error) => console.error('Error fetching order count:', error),
       });
@@ -155,3 +178,7 @@ async loadUserId(): Promise<void> {
   }
 
 }
+function onBack() {
+  throw new Error('Function not implemented.');
+}
+
