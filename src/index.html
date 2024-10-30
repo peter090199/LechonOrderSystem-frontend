@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,13 +13,16 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <title>Redirecting...</title>
   <script type="text/javascript">
+      // Redirect to the root with a hash for routing
       var path = window.location.pathname;
-      window.location.href = "/" + "#" + path;
-  </script>
+      if (path !== '/') {
+        window.location.replace('/' + path); // Adds the path as a hash for SPA routers to recognize
+      }
+  </script> 
 </head>
+
 <body class="mat-typography">
   Redirecting...
   <app-root></app-root>
- 
 </body>
 </html>
