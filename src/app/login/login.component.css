@@ -4,19 +4,23 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #ece6ec;
+    background-color: #ffffff;
   }
   
   /* Form styling */
   .login-form {
-    background-color: #fff7ff44;
+    background-color: #7f797f44;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 360px;
   }
-  
+  /* Progress bar */
+mat-progress-bar {
+  width: 100%;
+  margin-bottom: 1rem;
+}
   /* Form title */
   .login-form h1 {
     margin-bottom: 15px;

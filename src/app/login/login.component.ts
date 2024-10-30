@@ -13,17 +13,16 @@ import { SharedService } from '../shared.service';
 export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
-    // const user = this.users.getUsers();
-    // console.log(this.users);
+    this.initializeForm();
   }
-
+  isLoading = false;
   
-  // private initializeForm(): void {
-  //   this.loginForm = this.fb.group({
-  //     UserName: ['', [Validators.required]],
-  //     Password: ['', [Validators.required, Validators.minLength(6)]]
-  //   });
-  // }
+  private initializeForm(): void {
+    this.loginForm = this.fb.group({
+      UserName: ['', [Validators.required]],
+      Password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
   
   hide = true;
   loginForm: FormGroup;
@@ -41,32 +40,40 @@ export class LoginComponent implements OnInit{
   user:any;
   onSubmit() 
   {
-   
     const { UserName, Password } = this.loginForm.value;
-    this.loginService.login(UserName, Password).subscribe({
-      next:(response) => {
-      const userRole = response.role; 
-      localStorage.setItem('user', JSON.stringify(userRole));
-      this.sharedService.setUsername(UserName);
-      this.sharedService.setUserRole(userRole); // Save role
-      this.notificationService.popupSwalMixin("Successfully Logged In.");
-      if (userRole === 'admin') {
-        this.router.navigate(['/header/home']);
-      } 
-      else {
-        this.router.navigate(['/header/menus/menu']); // Default dashboard
-      }
-      },
-      error: (err) => {
-        if (err.status === 401) {
-          // If unauthorized, redirect to login
-          this.router.navigate(['/login']);
-        } else {
-          this.notificationService.toastrError(err.error.message);
-        }
+    if (this.loginForm.valid)
+    {
+        this.isLoading = true; 
+        setTimeout(() => {
+          this.isLoading = false; 
+        }, 2000);
+        
+         this.loginService.login(UserName, Password).subscribe({
+          next:(response) => {
+          const userRole = response.role; 
+          localStorage.setItem('user', JSON.stringify(userRole));
+          this.sharedService.setUsername(UserName);
+          this.sharedService.setUserRole(userRole); // Save role
+          this.notificationService.popupSwalMixin("Successfully Logged In.");
+          if (userRole === 'admin') {
+            this.router.navigate(['/header/home']);
+          } 
+          else {
+            this.router.navigate(['/header/menus/menu']); // Default dashboard
+          }
+          },
+          error: (err) => {
+            if (err.status === 401) {
+              this.router.navigate(['/login']);
+            } else {
+              this.notificationService.toastrError(err.error.message);
+            }
 
-      }
-    });
+          
+          }
+        
+        });
+    }
   }
 
 }

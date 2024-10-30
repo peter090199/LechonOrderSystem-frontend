@@ -1,6 +1,9 @@
 <div class="login-container">
     <div class="login-form">
       <h1>Login</h1>
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate" color="primary"></mat-progress-bar>
+
+      
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="standard">
           <mat-label>Username</mat-label>
@@ -24,7 +27,7 @@
         </mat-form-field>
         
   
-        <button mat-raised-button color="primary" type="submit">Login</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="isLoading">Login</button>
       </form><br>
       <div class="links">
         <a href="/register">Don't have an account?  Register</a>

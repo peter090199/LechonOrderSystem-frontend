@@ -3,11 +3,11 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #ece6ec;
+  background-color: #ffffff;
 }
 
 .register-form {
-  background-color: #fff7ff44;
+  background-color: #7f797f44;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
