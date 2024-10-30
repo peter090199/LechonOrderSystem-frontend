@@ -14,9 +14,9 @@ export class AppComponent {
     this.isChatOpen = !this.isChatOpen;  // Invert the current state of the chat window
   }
 
+
   // Optional function to close the chat window from within the chat component
   onCloseChat() {
     this.isChatOpen = false;  // Explicitly set the chat window state to closed
   }
 }
-
